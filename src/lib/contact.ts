@@ -55,7 +55,7 @@ export async function sendContactMessage(
   const emailPayload = {
     subject: subject,
     from: payload.email,
-    message: `Name: ${payload.name}\n${payload.program ? `Program Interest: ${payload.program}\n` : ''}\nMessage:\n${payload.message}`,
+    message: `From: ${payload.email}\n Name: ${payload.name}\n${payload.program ? `Program Interest: ${payload.program}\n` : ''}\nMessage:\n${payload.message}`,
   }
 
     try {
