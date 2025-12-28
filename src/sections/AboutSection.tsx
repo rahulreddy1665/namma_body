@@ -11,7 +11,7 @@ export default function AboutSection() {
       <SectionHeading
         eyebrow="About"
         title="Certified coaching, engineered for results."
-        description="I coach with a simple philosophy: master fundamentals, track progress, and build discipline that lasts. Your program adapts to your life—without compromising standards."
+        description="I coach with a simple philosophy: master fundamentals, track progress, and build discipline that lasts. Your program adapts to your life without compromising standards."
       />
 
       <Container>
@@ -26,13 +26,13 @@ export default function AboutSection() {
           >
             <h3 style={{ margin: 0, letterSpacing: '-0.01em' }}>Your transformation, not a template.</h3>
             <p className="muted" style={{ margin: '10px 0 0' }}>
-              Whether you want fat loss, strength, muscle building, or a complete lifestyle reset, the plan is
-              built around measurable progression and realistic adherence. You’ll know exactly what to do—and why.
+            NAMMA BODY is a place where you come as you are, give your best, and take responsibility for your fitness journey.
+            We help you achieve your fitness goals the right  way.
             </p>
 
             <div style={{ display: 'grid', gap: 12, marginTop: 18 }}>
-              <ProofLine icon={<IconCheck />} title="Results-driven programming" text="Progression rules, deloads, recovery, and performance metrics." />
-              <ProofLine icon={<IconBolt />} title="Intensity with control" text="Form, tempo, and smart volume—so you grow without burning out." />
+              <ProofLine icon={<IconCheck />} title="Results driven programming" text="Progression rules, deloads, recovery, and performance metrics." />
+              <ProofLine icon={<IconBolt />} title="Intensity with control" text="Form, tempo, and smart volume so you grow without burning out." />
               <ProofLine icon={<IconTarget />} title="Accountability that sticks" text="Weekly check-ins, adjustments, and clear next steps." />
             </div>
           </motion.div>
@@ -45,7 +45,7 @@ export default function AboutSection() {
             transition={{ duration: 0.5, ease: 'easeOut', delay: reduceMotion ? 0 : 0.04 }}
           >
             <MiniCard title="Experience" value="6+ yrs" note="Strength & conditioning coaching" />
-            <MiniCard title="Certifications" value="CPT" note="Form-first, evidence-led methods" />
+            <MiniCard title="Certifications" value="CPT" note="Form first, evidence led methods" />
             <MiniCard title="Focus" value="Results" note="Fat loss · Muscle · Performance" />
           </motion.div>
         </div>

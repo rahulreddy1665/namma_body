@@ -54,10 +54,14 @@ function Logo() {
           fontWeight: 850,
           letterSpacing: '-0.02em',
           textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+          background: 'linear-gradient(135deg, #FFC800, #DC2626)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          color: 'transparent',
         }}
       >
-        <span style={{ color: '#FFC800' }}>Namma</span>
-        <span style={{ color: '#DC2626' }}> Body</span>
+        Namma Body
       </span>
     </a>
   )
@@ -96,10 +100,10 @@ export default function Navbar({ activeId }: Props) {
   const items = useMemo(() => NAV_ITEMS, [])
 
   return (
-      <header
-        className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
-        style={{
-        position: 'sticky',
+    <header
+      className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
+      style={{
+        position: scrolled ? 'sticky' : 'absolute',
         top: 0,
         left: 0,
         right: 0,
@@ -127,7 +131,7 @@ export default function Navbar({ activeId }: Props) {
           <nav aria-label="Primary" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div className="nav-links" style={{ display: 'none', gap: 6, alignItems: 'center' }}>
               {items.map((item) => {
-                const isActive = activeId === item.id
+                const isActive = activeId !== null && activeId === item.id
                 return (
                   <a
                     key={item.id}
@@ -202,9 +206,15 @@ export default function Navbar({ activeId }: Props) {
 
         <style>
           {`
-            .navbar--transparent {
-              background: #050308 !important;
-            }
+           .navbar--transparent {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 12, 10, 0.55),
+    rgba(15, 12, 10, 0.25),
+    rgba(15, 12, 10, 0)
+  ) !important;
+  backdrop-filter: blur(6px) saturate(120%);
+}
             .navbar--scrolled {
               background: rgba(10,5,5,0.3) !important;
               backdrop-filter: blur(20px) saturate(180%) !important;
@@ -243,7 +253,7 @@ export default function Navbar({ activeId }: Props) {
             <Container>
               <div style={{ display: 'grid', gap: 8, padding: '14px 0 18px' }}>
                 {items.map((item) => {
-                  const isActive = activeId === item.id
+                  const isActive = activeId !== null && activeId === item.id
                   return (
                     <a
                       key={item.id}

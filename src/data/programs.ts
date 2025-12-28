@@ -1,34 +1,64 @@
+export type CommitmentTier = 'monthly' | 'threeMonths' | 'sixMonths'
+
 export type Program = {
   title: string
   subtitle: string
-  highlights: string[]
   tag: string
+  tier: CommitmentTier
+  tierLabel: string
+  pricing: string
+  isRecommended?: boolean
+  features: string[]
 }
 
 export const PROGRAMS: Program[] = [
   {
-    title: 'Fat Loss',
-    subtitle: 'Sustainable conditioning, nutrition habits, and daily structure.',
-    tag: 'Cut',
-    highlights: ['Calorie strategy + habits', 'Strength + metabolic finishers', 'Weekly check-ins'],
+    title: 'Monthly Plan',
+    subtitle: 'Getting started with basic structure and support.',
+    tag: 'Starter',
+    tier: 'monthly',
+    tierLabel: 'Entry',
+    pricing: '₹5,000 / month',
+    features: [
+      '1 ON 1 ON BOARDING CONSULTATION CALL',
+      'BASIC WORKOUT PLAN WITH GUIDANCE',
+      'GENERAL DIET GUIDANCE',
+      'LIMITED WHATSAPP SUPPORT',
+    ],
   },
   {
-    title: 'Muscle Building',
-    subtitle: 'Progressive overload with recovery-first programming.',
-    tag: 'Build',
-    highlights: ['Hypertrophy cycles', 'Form + tempo mastery', 'Strength benchmarks'],
+    title: '3-Month Plan',
+    subtitle: 'Build momentum with structured programming and consistent tracking. Muscle gain, Fat loss.',
+    tag: 'Progress',
+    tier: 'threeMonths',
+    tierLabel: 'Progress Phase',
+    pricing: '₹15,000',
+    features: [
+      '1 ON 1 ON BOARDING CONSULTATION CALL',
+      'DETAILED WORKOUT PROGRAMMING',
+      'STRUCTURED DIET PLAN',
+      'WEEKLY PROGRESS CHECK INS',
+      'FULL WHATSAPP SUPPORT',
+      'PROGRESS TRACKING SHEET',
+    ],
   },
   {
-    title: 'Online Coaching',
-    subtitle: 'Remote coaching with accountability and performance tracking.',
-    tag: 'Remote',
-    highlights: ['Custom plan + app tracking', 'Video form feedback', 'Adjustments every week'],
-  },
-  {
-    title: 'Custom Plans',
-    subtitle: 'For busy schedules—built around your goals and constraints.',
-    tag: 'Custom',
-    highlights: ['Flexible time blocks', 'Minimal equipment options', 'Clear progression rules'],
+    title: '6-Month Plan',
+    subtitle: 'Complete transformation with periodized training and lifestyle coaching. Fat loss, Muscle gain, Body recomp.',
+    tag: 'Transformation',
+    tier: 'sixMonths',
+    tierLabel: 'Transformation Phase',
+    pricing: '₹25,000',
+    isRecommended: true,
+    features: [
+      '1 ON 1 ON BOARDING CONSULTATION CALL',
+      'PERIODIZED TRAINING PHASES',
+      'DIET ADJUSTMENTS BASED ON PROGRESS',
+      'WEEKLY CHECK INS + FEEDBACK',
+      'PRIORITY WHATSAPP SUPPORT',
+      'FULL PROGRESS TRACKING + REVIEWS',
+      'HABIT & LIFESTYLE COACHING',
+    ],
   },
 ]
 

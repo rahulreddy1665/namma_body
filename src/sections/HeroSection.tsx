@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import Button from '../components/Button'
 import Container from '../components/Container'
-import heroBanner from '../assets/herobanner.jpeg'
+import heroBanner from '../assets/herobanner.png'
 
 const HEADLINE = 'Build discipline. Earn your transformation.'
 
@@ -11,10 +11,11 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Hero"
+      id="hero"
       style={{
-        padding: 'clamp(140px, 15vh, 200px) 0 100px',
+        padding: '0 0 100px',
         position: 'relative',
-        minHeight: '90vh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
@@ -60,6 +61,7 @@ export default function HeroSection() {
             maxWidth: 680,
             position: 'relative',
             zIndex: 1,
+            marginTop: 'clamp(140px, 15vh, 200px)',
           }}
         >
           <motion.div
@@ -69,20 +71,7 @@ export default function HeroSection() {
             style={{ display: 'grid', gap: 12 }}
             className="hero-badges"
           >
-            <div
-              style={{
-                fontSize: 16,
-                fontWeight: 800,
-                background: 'linear-gradient(135deg, #FFC800, #DC2626)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase'
-              }}
-            >
-              ಶಕ್ತಿ ಮತ್ತು ಶಿಸ್ತು
-            </div>
+           
             <div
               className="pill"
               style={{ display: 'inline-flex', fontSize: 13, padding: '6px 14px', width: 'fit-content' }}
@@ -92,7 +81,7 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          <h1 className="h1" style={{ marginTop: 24, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1 }}>
+          <h1 className="h1" style={{ marginTop: 24, fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}>
             {reduceMotion ? (
               HEADLINE
             ) : (
@@ -105,8 +94,8 @@ export default function HeroSection() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                     transition={{
-                          duration: 0.4,
-                          delay: 0.2 + (wordIdx * 5 + i) * 0.02,
+                          duration: 0.6,
+                          delay: 0.3 + (wordIdx * 5 + i) * 0.035,
                       ease: 'easeOut',
                     }}
                         style={{ display: 'inline-block' }}
@@ -123,9 +112,13 @@ export default function HeroSection() {
           <motion.p
             className="lead"
             style={{ margin: '20px 0 0', maxWidth: 520, fontSize: '1.25rem', lineHeight: 1.5 }}
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.8 }}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={reduceMotion ? { opacity: 1 } : { opacity: 1 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: [0.16, 1, 0.3, 1], 
+              delay: reduceMotion ? 0 : 2.1 
+            }}
           >
             Train with purpose, track progress, transform with discipline.
           </motion.p>

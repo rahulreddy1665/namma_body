@@ -4,8 +4,8 @@ import { Instagram, Facebook, Youtube } from 'lucide-react'
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/nammabody?igsh=Ynk4NDVxZWpvam5w&utm_source=qr', label: 'Instagram' },
+    // { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
     { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
   ]
 
