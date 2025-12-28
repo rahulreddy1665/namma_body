@@ -55,15 +55,7 @@ When users click "Get This Program" or the floating WhatsApp button, they'll be 
 
 ## Contact Form Configuration
 
-The contact form requires an API endpoint to send emails. You have two options:
-
-### Option 1: Use Netlify Functions (Included)
-
-If deploying to Netlify, the form will automatically use `/.netlify/functions/send-email`. No configuration needed!
-
-### Option 2: Use External API
-
-Set your API endpoint in `.env.local`:
+The contact form requires an API endpoint to send emails. Set your API endpoint in `.env.local`:
 
 ```bash
 VITE_CONTACT_ENDPOINT=https://your-api-domain.com/api/send-email

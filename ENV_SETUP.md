@@ -52,9 +52,7 @@ VITE_CONTACT_ENDPOINT=https://your-api-domain.com/api/send-email
 }
 ```
 
-**For Netlify Deployments:**
-- If deployed on Netlify, the endpoint will automatically use `/.netlify/functions/send-email`
-- No need to set `VITE_CONTACT_ENDPOINT` for Netlify deployments
+**Required:** Set `VITE_CONTACT_ENDPOINT` to your API server URL
 
 ---
 

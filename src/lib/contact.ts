@@ -31,26 +31,8 @@ export async function sendContactMessage(
   const validated = validateContactPayload(payload)
   if (!validated.ok) return validated
 
-  // Determine endpoint: use Netlify function if on Netlify, otherwise use custom endpoint
-  const getEndpoint = (): string => {
-    // If custom endpoint is set, use it
-    if (import.meta.env.VITE_CONTACT_ENDPOINT) {
-      return import.meta.env.VITE_CONTACT_ENDPOINT
-    }
-    
-    // Check if we're on Netlify (production or preview)
-    if (typeof window !== 'undefined') {
-      const hostname = window.location.hostname
-      if (hostname.includes('netlify.app') || hostname.includes('netlify.com')) {
-        return '/.netlify/functions/send-email'
-      }
-    }
-    
-    // Return error message if endpoint is not configured
-    return ''
-  }
-  
-  const endpoint = getEndpoint()
+  // Get endpoint from environment variable (required)
+  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
   
   if (!endpoint) {
     return {

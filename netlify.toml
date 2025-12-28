@@ -11,11 +11,6 @@
   to = "/index.html"
   status = 200
 
-# Netlify Functions configuration
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
 # Headers for security and performance
 [[headers]]
   for = "/*"

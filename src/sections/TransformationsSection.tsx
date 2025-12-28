@@ -3,8 +3,8 @@ import Container from '../components/Container'
 import { TRANSFORMATIONS } from '../data/transformations'
 
 export default function TransformationsSection() {
-  // Use first 5 transformations for the editorial look
-  const displayTransformations = TRANSFORMATIONS.slice(0, 5)
+  // Use all 3 transformations for the editorial look
+  const displayTransformations = TRANSFORMATIONS
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -76,9 +76,9 @@ export default function TransformationsSection() {
         >
           {displayTransformations.map((t, idx) => {
             // Editorial staggered offsets and sizes for depth
-            const offsets = [0, 60, -30, 45, -15]
-            const aspectRatios = ['3/4', '4/5', '3/4', '4/5', '3/4']
-            const zIndices = [10, 8, 9, 7, 6]
+            const offsets = [0, 60, -30]
+            const aspectRatios = ['3/4', '4/5', '3/4']
+            const zIndices = [10, 8, 9]
 
             return (
               <motion.div
