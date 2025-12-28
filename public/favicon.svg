@@ -2,8 +2,8 @@
   <rect width="64" height="64" rx="14" fill="url(#gradient)"/>
   <defs>
     <linearGradient id="gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#7c5cff"/>
-      <stop offset="100%" stop-color="#22e6a8"/>
+      <stop offset="0%" stop-color="#FFC800"/>
+      <stop offset="100%" stop-color="#DC2626"/>
     </linearGradient>
   </defs>
   <!-- Strong fitness icon: dumbbell/strength mark -->

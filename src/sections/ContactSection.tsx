@@ -5,6 +5,7 @@ import Container from '../components/Container'
 import SectionHeading from '../components/SectionHeading'
 import Button from '../components/Button'
 import { sendContactMessage } from '../lib/contact'
+import { PROGRAMS } from '../data/programs'
 
 type Status =
   | { type: 'idle' }
@@ -16,6 +17,7 @@ export default function ContactSection() {
   const reduceMotion = useReducedMotion()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [program, setProgram] = useState('')
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<Status>({ type: 'idle' })
 
@@ -49,14 +51,15 @@ export default function ContactSection() {
               e.preventDefault()
               if (status.type === 'submitting') return
               setStatus({ type: 'submitting' })
-              const res = await sendContactMessage({ name, email, message })
+              const res = await sendContactMessage({ name, email, message, program: program || undefined })
               if (!res.ok) {
                 setStatus({ type: 'error', message: res.error })
                 return
               }
-              setStatus({ type: 'success', message: 'Message sent. I’ll get back to you shortly.' })
+              setStatus({ type: 'success', message: "Message sent. I'll get back to you shortly." })
               setName('')
               setEmail('')
+              setProgram('')
               setMessage('')
             }}
             aria-describedby="contact-status"
@@ -84,6 +87,16 @@ export default function ContactSection() {
                 autoComplete="email"
                 gridSpan={6}
                 inputMode="email"
+              />
+              <SelectField
+                label="Program Interest"
+                value={program}
+                onChange={setProgram}
+                options={[
+                  { value: '', label: 'Select a program (optional)' },
+                  ...PROGRAMS.map((p) => ({ value: p.title, label: p.title })),
+                ]}
+                gridSpan={12}
               />
               <Field
                 label="Message"
@@ -189,6 +202,44 @@ const fieldStyle: CSSProperties = {
   color: 'rgba(255,255,255,.92)',
   padding: '12px 12px',
   outline: 'none',
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  options,
+  gridSpan,
+}: {
+  label: string
+  value: string
+  onChange: (v: string) => void
+  options: Array<{ value: string; label: string }>
+  gridSpan: number
+}) {
+  const id = `field-${label.toLowerCase().replace(/\s+/g, '-')}`
+  return (
+    <div style={{ gridColumn: `span ${gridSpan}` }}>
+      <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 8 }}>
+        {label}
+      </label>
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={{
+          ...fieldStyle,
+          cursor: 'pointer',
+        }}
+      >
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
 }
 
 

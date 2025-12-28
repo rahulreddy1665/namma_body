@@ -2,6 +2,7 @@ export type ContactPayload = {
   name: string
   email: string
   message: string
+  program?: string
 }
 
 export type ContactResult =

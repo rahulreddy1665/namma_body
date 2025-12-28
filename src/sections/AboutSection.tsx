@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { Bolt, CheckCircle2, Target } from 'lucide-react'
 import Container from '../components/Container'
 import SectionHeading from '../components/SectionHeading'
 
@@ -119,30 +120,8 @@ function ProofLine({
   )
 }
 
-function IconCheck() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 6L9 17l-5-5" stroke="rgba(34,230,168,.95)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function IconBolt() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M13 2L3 14h7l-1 8 12-14h-7l-1-6z" stroke="rgba(124,92,255,.95)" strokeWidth="2.2" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function IconTarget() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 21a9 9 0 1 1 9-9" stroke="rgba(255,255,255,.75)" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M12 17a5 5 0 1 1 5-5" stroke="rgba(34,230,168,.9)" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M12 13a1 1 0 1 1 1-1" stroke="rgba(124,92,255,.95)" strokeWidth="2.2" strokeLinecap="round" />
-    </svg>
-  )
-}
+const IconCheck = () => <CheckCircle2 size={18} strokeWidth={2.4} color="rgba(255,200,0,.95)" />
+const IconBolt = () => <Bolt size={18} strokeWidth={2.4} color="rgba(220,38,38,.95)" />
+const IconTarget = () => <Target size={18} strokeWidth={2.4} color="rgba(255,255,255,.85)" />
 
 

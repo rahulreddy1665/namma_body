@@ -1,15 +1,17 @@
 :root {
-  /* Theme */
-  --bg: #070a0e;
-  --bg-2: #0a0f17;
+  /* Theme - Karnataka Flag Colors */
+  --bg: #0a0505;
+  --bg-2: #120808;
+  --bg-glow-1: rgba(255, 200, 0, 0.16);
+  --bg-glow-2: rgba(220, 38, 38, 0.12);
   --surface: rgba(255, 255, 255, 0.06);
   --surface-2: rgba(255, 255, 255, 0.09);
   --border: rgba(255, 255, 255, 0.12);
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.68);
   --muted-2: rgba(255, 255, 255, 0.54);
-  --accent: #7c5cff; /* premium violet */
-  --accent-2: #22e6a8; /* fitness neon */
+  --accent: #FFC800; /* Karnataka yellow/gold */
+  --accent-2: #DC2626; /* Karnataka red */
   --danger: #ff4d6d;
 
   --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
@@ -53,10 +55,7 @@ body {
 body {
   margin: 0;
   color: var(--text);
-  background:
-    radial-gradient(1200px 800px at 20% 0%, rgba(124, 92, 255, 0.18), transparent 55%),
-    radial-gradient(900px 600px at 85% 15%, rgba(34, 230, 168, 0.14), transparent 60%),
-    linear-gradient(180deg, var(--bg), var(--bg-2));
+  background: linear-gradient(180deg, var(--bg), var(--bg-2));
 }
 
 img {
@@ -70,17 +69,40 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(124, 92, 255, 0.55);
+  outline: 3px solid rgba(255, 200, 0, 0.55);
   outline-offset: 3px;
   border-radius: 8px;
 }
 
 .app {
   min-height: 100%;
+  position: relative;
 }
 
 .main {
   overflow: clip;
+}
+
+.app::before,
+.app::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app::before {
+  background:
+    radial-gradient(1400px 900px at 20% 12%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(1200px 900px at 85% 8%, var(--bg-glow-2), transparent 62%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+}
+
+.app::after {
+  background: radial-gradient(1100px 700px at 50% 120%, rgba(255, 200, 0, 0.08), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
 }
 
 .skip-link {
@@ -105,11 +127,23 @@ a {
 }
 
 .section {
-  padding: 92px 0;
+  padding: 48px 0;
+  position: relative;
+  z-index: 1;
 }
 
 .section--tight {
-  padding: 76px 0;
+  padding: 32px 0;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .divider {
@@ -180,13 +214,14 @@ a {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, rgba(124, 92, 255, 0.95), rgba(34, 230, 168, 0.9));
-  color: rgba(0, 0, 0, 0.9);
-  box-shadow: 0 16px 40px rgba(124, 92, 255, 0.16);
+  background: linear-gradient(135deg, rgba(255, 200, 0, 0.95), rgba(220, 38, 38, 0.9));
+  color: rgba(0, 0, 0, 0.95);
+  font-weight: 750;
+  box-shadow: 0 16px 40px rgba(255, 200, 0, 0.20);
 }
 .btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 22px 60px rgba(124, 92, 255, 0.22);
+  box-shadow: 0 22px 60px rgba(255, 200, 0, 0.28);
 }
 
 .btn--ghost {
@@ -217,12 +252,56 @@ a {
   }
 }
 
+/* Section Heading Ripple Effect */
+.section-heading-pointer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pointer-dot::before,
+.pointer-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92));
+  opacity: 0;
+  animation: ripple 2s ease-out infinite;
+}
+
+.pointer-dot::after {
+  animation-delay: 1s;
+}
+
+@keyframes ripple {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
   }
   * {
     transition: none !important;
+    animation: none !important;
+  }
+  .pointer-dot::before,
+  .pointer-dot::after {
     animation: none !important;
   }
 }

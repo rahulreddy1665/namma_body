@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
+import logoImage from '../assets/logo.jpeg'
 
 type NavId = 'about' | 'transformations' | 'programs' | 'contact'
 
@@ -37,18 +38,25 @@ function Logo() {
       aria-label="Namma Body"
       style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}
     >
-      <span
-        aria-hidden="true"
+      <img
+        src={logoImage}
+        alt=""
         style={{
           width: 34,
           height: 34,
           borderRadius: 12,
-          background: 'linear-gradient(135deg, rgba(124,92,255,.95), rgba(34,230,168,.92))',
-          boxShadow: '0 16px 40px rgba(124,92,255,.18)',
+          objectFit: 'cover',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
         }}
       />
-      <span style={{ fontWeight: 850, letterSpacing: '-0.02em' }}>
-        Namma<span style={{ color: 'rgba(255,255,255,.7)' }}>Body</span>
+      <span
+        style={{
+          fontWeight: 850,
+          letterSpacing: '-0.02em',
+        }}
+      >
+        <span style={{ color: '#FFC800' }}>ನಮ್ಮ</span>
+        <span style={{ color: '#DC2626' }}> ಬಾಡಿ</span>
       </span>
     </a>
   )
@@ -57,6 +65,7 @@ function Logo() {
 export default function Navbar({ activeId }: Props) {
   const reduceMotion = useReducedMotion()
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     if (!open) return
@@ -67,17 +76,28 @@ export default function Navbar({ activeId }: Props) {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [open])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const items = useMemo(() => NAV_ITEMS, [])
 
   return (
     <header
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
       style={{
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        backdropFilter: 'blur(12px)',
-        background: 'rgba(7,10,14,.68)',
-        borderBottom: '1px solid rgba(255,255,255,.10)',
+        backdropFilter: 'blur(12px) saturate(120%)',
+        background: 'rgba(10,5,5,0.85)',
+        borderBottom: '1px solid rgba(255,255,255,.04)',
+        boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
+        transition: 'background 0.3s ease, backdrop-filter 0.3s ease',
       }}
     >
       <Container>
@@ -108,13 +128,25 @@ export default function Navbar({ activeId }: Props) {
                     style={{
                       padding: '10px 12px',
                       borderRadius: 999,
-                      color: isActive ? 'rgba(255,255,255,.92)' : 'rgba(255,255,255,.72)',
-                      border: isActive ? '1px solid rgba(124,92,255,.35)' : '1px solid transparent',
-                      background: isActive ? 'rgba(124,92,255,.10)' : 'transparent',
+                      color: isActive ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.75)',
+                      border: isActive ? '1px solid rgba(255,200,0,.35)' : '1px solid transparent',
+                      background: isActive ? 'rgba(255,200,0,.12)' : 'transparent',
                       transition: 'background 160ms ease, border-color 160ms ease, color 160ms ease',
                       fontWeight: 650,
                       fontSize: 14,
                       cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = 'rgba(255,255,255,.06)'
+                        e.currentTarget.style.color = 'rgba(255,255,255,.88)'
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = 'transparent'
+                        e.currentTarget.style.color = 'rgba(255,255,255,.75)'
+                      }
                     }}
                   >
                     {item.label}
@@ -157,6 +189,13 @@ export default function Navbar({ activeId }: Props) {
 
         <style>
           {`
+            .navbar {
+              background: rgba(10,5,5,0.85) !important;
+            }
+            .navbar--scrolled {
+              background: rgba(10,5,5,0.95) !important;
+              backdrop-filter: blur(16px) saturate(120%) !important;
+            }
             @media (min-width: 860px) {
               .nav-links { display: inline-flex !important; }
               header button[aria-controls="mobile-menu"] { display: none !important; }
@@ -175,9 +214,9 @@ export default function Navbar({ activeId }: Props) {
             transition={{ duration: 0.22, ease: 'easeOut' }}
             style={{
               overflow: 'hidden',
-              borderTop: '1px solid rgba(255,255,255,.10)',
-              background: 'rgba(7,10,14,.78)',
-              backdropFilter: 'blur(12px)',
+              borderTop: '1px solid rgba(255,255,255,.04)',
+              background: 'rgba(10,5,5,0.30)',
+              backdropFilter: 'blur(12px) saturate(120%)',
             }}
           >
             <Container>
@@ -200,11 +239,22 @@ export default function Navbar({ activeId }: Props) {
                       style={{
                         padding: '12px 12px',
                         borderRadius: 14,
-                        border: '1px solid rgba(255,255,255,.10)',
-                        background: isActive ? 'rgba(124,92,255,.12)' : 'rgba(255,255,255,.04)',
+                        border: '1px solid rgba(255,255,255,.08)',
+                        background: isActive ? 'rgba(255,200,0,.15)' : 'rgba(255,255,255,.05)',
                         color: 'rgba(255,255,255,.92)',
                         fontWeight: 700,
                         cursor: 'pointer',
+                        transition: 'background 160ms ease, border-color 160ms ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.background = 'rgba(255,255,255,.08)'
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.background = 'rgba(255,255,255,.05)'
+                        }
                       }}
                     >
                       {item.label}
