@@ -55,23 +55,41 @@ When users click "Get This Program" or the floating WhatsApp button, they'll be 
 
 ## Contact Form Configuration
 
-To connect the contact form to your backend:
+The contact form requires an API endpoint to send emails. You have two options:
+
+### Option 1: Use Netlify Functions (Included)
+
+If deploying to Netlify, the form will automatically use `/.netlify/functions/send-email`. No configuration needed!
+
+### Option 2: Use External API
+
+Set your API endpoint in `.env.local`:
 
 ```bash
-# In .env.local
-VITE_CONTACT_ENDPOINT=https://your-domain.com/api/contact
+VITE_CONTACT_ENDPOINT=https://your-api-domain.com/api/send-email
 ```
 
-Expected backend payload format:
+**Expected API format:**
+- Method: `POST`
+- Headers: `Content-Type: application/json`
+- Body:
 ```json
 {
-  "name": "string",
-  "email": "string", 
-  "message": "string"
+  "subject": "Contact Form: Name - Program",
+  "from": "user@example.com",
+  "message": "Message content"
 }
 ```
 
-**Without an endpoint configured:** The form will simulate submission with a 700ms delay and show a success message (useful for demo/preview deployments).
+**Response format:**
+```json
+{
+  "ok": true,
+  "message": "Email sent successfully"
+}
+```
+
+**Without an endpoint configured:** The form will show an error message asking to configure `VITE_CONTACT_ENDPOINT`.
 
 ## Customization
 

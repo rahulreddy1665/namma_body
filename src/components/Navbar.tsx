@@ -50,9 +50,11 @@ function Logo() {
         }}
       />
       <span
+        className="navbar-logo-text"
         style={{
           fontWeight: 850,
           letterSpacing: '-0.02em',
+          textShadow: '0 2px 8px rgba(0,0,0,0.3)',
         }}
       >
         <span style={{ color: '#FFC800' }}>ನಮ್ಮ</span>
@@ -88,16 +90,18 @@ export default function Navbar({ activeId }: Props) {
 
   return (
     <header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
       style={{
-        position: 'sticky',
+        position: scrolled ? 'sticky' : 'absolute',
         top: 0,
+        left: 0,
+        right: 0,
         zIndex: 50,
-        backdropFilter: 'blur(12px) saturate(120%)',
-        background: 'rgba(10,5,5,0.85)',
-        borderBottom: '1px solid rgba(255,255,255,.04)',
-        boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
-        transition: 'background 0.3s ease, backdrop-filter 0.3s ease',
+        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px)',
+        background: scrolled ? 'rgba(10,5,5,0.3)' : 'transparent',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : 'none',
+        boxShadow: scrolled ? '0 1px 8px rgba(0,0,0,0.1)' : 'none',
+        transition: 'all 0.3s ease',
       }}
     >
       <Container>
@@ -128,13 +132,14 @@ export default function Navbar({ activeId }: Props) {
                     style={{
                       padding: '10px 12px',
                       borderRadius: 999,
-                      color: isActive ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.75)',
+                      color: isActive ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.85)',
                       border: isActive ? '1px solid rgba(255,200,0,.35)' : '1px solid transparent',
                       background: isActive ? 'rgba(255,200,0,.12)' : 'transparent',
                       transition: 'background 160ms ease, border-color 160ms ease, color 160ms ease',
                       fontWeight: 650,
                       fontSize: 14,
                       cursor: 'pointer',
+                      textShadow: '0 1px 4px rgba(0,0,0,0.4)',
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
@@ -182,19 +187,19 @@ export default function Navbar({ activeId }: Props) {
                   }}
                 />
               </span>
-              <span style={{ fontSize: 14, fontWeight: 700 }}>Menu</span>
+              <span style={{ fontSize: 14, fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>Menu</span>
             </button>
           </nav>
         </div>
 
         <style>
           {`
-            .navbar {
-              background: rgba(10,5,5,0.85) !important;
+            .navbar--transparent {
+              background: transparent !important;
             }
             .navbar--scrolled {
-              background: rgba(10,5,5,0.95) !important;
-              backdrop-filter: blur(16px) saturate(120%) !important;
+              background: rgba(10,5,5,0.3) !important;
+              backdrop-filter: blur(20px) saturate(180%) !important;
             }
             @media (min-width: 860px) {
               .nav-links { display: inline-flex !important; }

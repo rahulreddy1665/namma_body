@@ -31,28 +31,69 @@ export async function sendContactMessage(
   const validated = validateContactPayload(payload)
   if (!validated.ok) return validated
 
-  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
-
-  // Backend-ready mode: set VITE_CONTACT_ENDPOINT to your API endpoint.
-  // Example: VITE_CONTACT_ENDPOINT=https://your-domain.com/api/contact
-  if (endpoint) {
-    try {
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: opts?.signal,
-      })
-      if (!res.ok) return { ok: false, error: 'Failed to send message. Please try again.' }
-      return { ok: true }
-    } catch {
-      return { ok: false, error: 'Network error. Please try again.' }
+  // Determine endpoint: use Netlify function if on Netlify, otherwise use custom endpoint
+  const getEndpoint = (): string => {
+    // If custom endpoint is set, use it
+    if (import.meta.env.VITE_CONTACT_ENDPOINT) {
+      return import.meta.env.VITE_CONTACT_ENDPOINT
+    }
+    
+    // Check if we're on Netlify (production or preview)
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname
+      if (hostname.includes('netlify.app') || hostname.includes('netlify.com')) {
+        return '/.netlify/functions/send-email'
+      }
+    }
+    
+    // Return error message if endpoint is not configured
+    return ''
+  }
+  
+  const endpoint = getEndpoint()
+  
+  if (!endpoint) {
+    return {
+      ok: false,
+      error: 'Contact endpoint not configured. Please set VITE_CONTACT_ENDPOINT environment variable.',
     }
   }
 
-  // Simulated submission: keep UX realistic while staying deployable without a backend.
-  await new Promise<void>((resolve) => setTimeout(resolve, 700))
-  return { ok: true }
+  // Transform payload to match Node.js API format
+  const subject = payload.program 
+    ? `Contact Form: ${payload.name} - ${payload.program}`
+    : `Contact Form: ${payload.name}`
+  
+  const emailPayload = {
+    subject: subject,
+    from: payload.email,
+    message: `Name: ${payload.name}\n${payload.program ? `Program Interest: ${payload.program}\n` : ''}\nMessage:\n${payload.message}`,
+  }
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(emailPayload),
+      signal: opts?.signal,
+    })
+
+    const data = await res.json().catch(() => ({ ok: false, error: 'Invalid response from server' }))
+    
+    if (!res.ok || !data.ok) {
+      return { 
+        ok: false, 
+        error: data.error || 'Failed to send message. Please try again.' 
+      }
+    }
+    
+    return { ok: true }
+  } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return { ok: false, error: 'Request cancelled' }
+    }
+    return { ok: false, error: 'Network error. Please check if the server is running.' }
+  }
 }
 
 
