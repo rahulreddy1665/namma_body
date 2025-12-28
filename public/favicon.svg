@@ -1,0 +1,18 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c5cff"/>
+      <stop offset="100%" stop-color="#22e6a8"/>
+    </linearGradient>
+  </defs>
+  <!-- Strong fitness icon: dumbbell/strength mark -->
+  <path d="M20 28h4v8h-4v-8z" fill="white" fill-opacity="0.95"/>
+  <path d="M40 28h4v8h-4v-8z" fill="white" fill-opacity="0.95"/>
+  <path d="M24 30h16v4H24v-4z" fill="white" fill-opacity="0.95"/>
+  <circle cx="20" cy="28" r="2.5" fill="white" fill-opacity="0.95"/>
+  <circle cx="20" cy="36" r="2.5" fill="white" fill-opacity="0.95"/>
+  <circle cx="44" cy="28" r="2.5" fill="white" fill-opacity="0.95"/>
+  <circle cx="44" cy="36" r="2.5" fill="white" fill-opacity="0.95"/>
+</svg>
+

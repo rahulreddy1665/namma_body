@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070a0e"/>
+      <stop offset="1" stop-color="#0a0f17"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#22e6a8" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="720" fill="url(#bg)"/>
+  <rect x="477" y="0" width="6" height="720" fill="url(#accent)" opacity="0.9"/>
+  <rect x="0" y="0" width="960" height="6" fill="url(#accent)"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#ffffff">
+    <text x="40" y="86" font-size="44" font-weight="800" fill-opacity="0.92">BEFORE</text>
+    <text x="520" y="86" font-size="44" font-weight="800" fill-opacity="0.92">AFTER</text>
+    <text x="40" y="130" font-size="18" fill-opacity="0.65">12 weeks · Online Coaching</text>
+    <text x="520" y="130" font-size="18" fill-opacity="0.65">Consistency · Check-ins · Adjustments</text>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.1">
+    <rect x="74" y="190" width="332" height="420" rx="22"/>
+    <rect x="554" y="190" width="332" height="420" rx="22"/>
+  </g>
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" fill="#ffffff">
+    <text x="110" y="260" font-size="18" fill-opacity="0.72">Weekly habits</text>
+    <text x="110" y="300" font-size="14" fill-opacity="0.55">Sleep · Steps · Training</text>
+    <text x="590" y="260" font-size="18" fill-opacity="0.72">Progress tracking</text>
+    <text x="590" y="300" font-size="14" fill-opacity="0.55">Volume · Loads · Recovery</text>
+  </g>
+  <g stroke-linecap="round">
+    <path d="M120 520 L210 520" stroke="#7c5cff" stroke-opacity="0.55" stroke-width="10"/>
+    <path d="M590 520 L820 520" stroke="#22e6a8" stroke-opacity="0.55" stroke-width="10"/>
+  </g>
+</svg>
+
+
