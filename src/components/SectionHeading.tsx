@@ -25,12 +25,11 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
           <span
               className="pointer-dot"
             style={{
-              width: 8,
-              height: 8,
+              width: 6,
+              height: 6,
               borderRadius: 999,
-              background:
-                'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
-              boxShadow: '0 0 0 4px rgba(255,200,0,.12)',
+              background: 'rgba(255, 255, 255, 0.6)',
+              boxShadow: '0 0 0 3px rgba(255,255,255,0.08)',
                 position: 'relative',
                 display: 'inline-block',
             }}

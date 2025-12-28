@@ -18,27 +18,27 @@ export default function FloatingWhatsApp() {
         position: 'fixed',
         bottom: 24,
         right: 24,
-        width: 60,
-        height: 60,
+        width: 56,
+        height: 56,
         borderRadius: '50%',
         background: 'linear-gradient(135deg, #FFC800, #DC2626)',
-        boxShadow: '0 8px 32px rgba(255, 200, 0, 0.35), 0 4px 12px rgba(0,0,0,0.25)',
+        boxShadow: '0 6px 24px rgba(255, 200, 0, 0.25), 0 3px 10px rgba(0,0,0,0.3)',
         border: 'none',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 100,
-        fontSize: 28,
-        transition: 'box-shadow 200ms ease',
+        fontSize: 26,
+        transition: 'box-shadow 200ms ease, transform 200ms ease',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.boxShadow =
-          '0 12px 48px rgba(255, 200, 0, 0.45), 0 6px 16px rgba(0,0,0,0.3)'
+          '0 10px 36px rgba(255, 200, 0, 0.35), 0 4px 14px rgba(0,0,0,0.35)'
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.boxShadow =
-          '0 8px 32px rgba(255, 200, 0, 0.35), 0 4px 12px rgba(0,0,0,0.25)'
+          '0 6px 24px rgba(255, 200, 0, 0.25), 0 3px 10px rgba(0,0,0,0.3)'
       }}
     >
       <svg

@@ -6,30 +6,8 @@ import Button from '../components/Button'
 import { PROGRAMS } from '../data/programs'
 import { openWhatsAppForProgram } from '../lib/whatsapp'
 
-// Helper function to render text with capital letters bold and highlight specific terms
-function renderBoldCaps(text: string, highlightTerms: string[] = []) {
-  // Terms to highlight (case-insensitive)
-  const termsToHighlight = highlightTerms.map(term => term.toLowerCase())
-  
-  // Check if the entire text matches a highlight term
-  const textLower = text.toLowerCase().trim()
-  if (termsToHighlight.includes(textLower)) {
-    return (
-      <span
-        style={{
-          background: 'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent',
-          fontWeight: 800,
-        }}
-      >
-        {text}
-      </span>
-    )
-  }
-
+// Helper function to render text with capital letters bold
+function renderBoldCaps(text: string) {
   // Match sequences of capital letters, numbers, spaces, and apostrophes
   const regex = /[A-Z][A-Z0-9\s']*/g
   const parts: (string | React.ReactElement)[] = []
@@ -59,7 +37,7 @@ function renderBoldCaps(text: string, highlightTerms: string[] = []) {
   return <>{parts.length > 0 ? parts : text}</>
 }
 
-// Helper function to highlight specific terms in white
+// Helper function to highlight specific terms
 function renderSubtitleWithHighlight(text: string, highlightTerms: string[]) {
   if (highlightTerms.length === 0) return text
 
@@ -79,13 +57,13 @@ function renderSubtitleWithHighlight(text: string, highlightTerms: string[]) {
     if (match.index > lastIndex) {
       parts.push(text.substring(lastIndex, match.index))
     }
-    // Add highlighted term in white
+    // Add highlighted term with subtle emphasis
     parts.push(
       <span
         key={matchIndex++}
         style={{
-          color: 'rgba(255,255,255,1)',
-          fontWeight: 700,
+          color: 'rgba(255,255,255,0.95)',
+          fontWeight: 650,
         }}
       >
         {match[0]}
@@ -102,47 +80,6 @@ function renderSubtitleWithHighlight(text: string, highlightTerms: string[]) {
   return <>{parts.length > 0 ? parts : text}</>
 }
 
-// Helper function to highlight specific numbers in pricing
-function renderPricingWithHighlight(text: string, highlightNumber: string) {
-  // Match the number that appears before a comma or slash - escape special regex characters
-  const escapedNumber = highlightNumber.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const regex = new RegExp(`(${escapedNumber})(?=,|/)`, 'g')
-  const parts: (string | React.ReactElement)[] = []
-  let lastIndex = 0
-  let matchIndex = 0
-
-  let match
-  while ((match = regex.exec(text)) !== null) {
-    // Add text before match
-    if (match.index > lastIndex) {
-      parts.push(text.substring(lastIndex, match.index))
-    }
-    // Add highlighted number
-    parts.push(
-      <span
-        key={matchIndex++}
-        style={{
-          background: 'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent',
-          fontWeight: 900,
-        }}
-      >
-        {match[1]}
-      </span>
-    )
-    lastIndex = match.index + match[0].length
-  }
-
-  // Add remaining text
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex))
-  }
-
-  return <>{parts.length > 0 ? parts : text}</>
-}
 
 export default function ProgramsSection() {
   const reduceMotion = useReducedMotion()
@@ -166,8 +103,6 @@ export default function ProgramsSection() {
           {PROGRAMS.map((p, idx) => {
             const isRecommended = p.isRecommended
             const isMonthly = p.tier === 'monthly'
-            const isThreeMonths = p.tier === 'threeMonths'
-            const highlightTerms: string[] = []
             const subtitleHighlightTerms = p.tier === 'threeMonths'
               ? ['Muscle gain', 'Fat loss']
               : p.tier === 'sixMonths'
@@ -190,44 +125,22 @@ export default function ProgramsSection() {
                     height: '100%',
                     padding: 18,
                     borderRadius: 18,
-                    background: isMonthly
-                      ? 'linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))'
-                      : isRecommended
-                      ? 'linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.05))'
-                      : 'linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03))',
+                    background: 'rgba(255, 255, 255, 0.04)',
                     position: 'relative',
                     overflow: 'hidden',
                     display: 'grid',
                     gap: 12,
                     gridTemplateRows: 'auto auto auto auto 1fr auto',
                     boxShadow: isRecommended
-                      ? '0 20px 60px rgba(0,0,0,0.55), 0 0 0 2px rgba(255,200,0,0.35), 0 0 40px rgba(255,200,0,0.15)'
-                      : isMonthly
-                      ? '0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08)'
-                      : '0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,200,0,0.14)',
+                      ? '0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,200,0,0.25)'
+                      : '0 12px 40px rgba(0,0,0,0.4)',
+                    border: isRecommended
+                      ? '1px solid rgba(255,200,0,0.25)'
+                      : '1px solid rgba(255,255,255,0.12)',
                     transition: 'transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease',
-                    opacity: isMonthly ? 0.85 : 1,
+                    opacity: isMonthly ? 0.88 : 1,
                   }}
                 >
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      padding: isRecommended ? 2 : 1,
-                      borderRadius: 18,
-                      background: isRecommended
-                        ? 'linear-gradient(135deg, rgba(255,200,0,.55), rgba(220,38,38,.35))'
-                        : isThreeMonths
-                        ? 'linear-gradient(135deg, rgba(255,200,0,.35), rgba(220,38,38,.20))'
-                        : 'linear-gradient(135deg, rgba(255,200,0,.25), rgba(220,38,38,.15))',
-                      mask:
-                        'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-                      maskComposite: 'exclude',
-                      WebkitMaskComposite: 'xor',
-                      pointerEvents: 'none',
-                    }}
-                  />
 
                   <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -253,7 +166,7 @@ export default function ProgramsSection() {
                         style={{
                           fontWeight: 800,
                           fontSize: 11,
-                          color: 'rgba(255,255,255,.95)',
+                          color: 'rgba(0,0,0,0.95)',
                           background: 'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
                           padding: '4px 10px',
                         }}
@@ -270,17 +183,15 @@ export default function ProgramsSection() {
                   </p>
 
                   <div style={{ marginTop: 12, padding: '14px 0', borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
-                    <div style={{ fontSize: isRecommended ? 24 : 20, fontWeight: 800, color: 'var(--accent)', letterSpacing: '-0.02em' }}>
-                      {p.tier === 'monthly' && renderPricingWithHighlight(p.pricing, '5')}
-                      {p.tier === 'threeMonths' && renderPricingWithHighlight(p.pricing, '15')}
-                      {p.tier === 'sixMonths' && renderPricingWithHighlight(p.pricing, '25')}
+                    <div style={{ fontSize: isRecommended ? 24 : 20, fontWeight: 800, color: isRecommended ? 'var(--accent)' : 'rgba(255,255,255,0.92)', letterSpacing: '-0.02em' }}>
+                      {p.pricing}
                     </div>
                   </div>
 
                   <ul style={{ margin: '16px 0 0', paddingLeft: 18, color: isMonthly ? 'rgba(255,255,255,.70)' : 'rgba(255,255,255,.78)' }}>
                     {p.features.map((feature, featureIdx) => (
                       <li key={featureIdx} style={{ margin: '8px 0', fontSize: 13, lineHeight: 1.5 }}>
-                        {renderBoldCaps(feature, highlightTerms)}
+                        {renderBoldCaps(feature)}
                       </li>
                     ))}
                   </ul>

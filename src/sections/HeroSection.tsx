@@ -76,7 +76,6 @@ export default function HeroSection() {
               className="pill"
               style={{ display: 'inline-flex', fontSize: 13, padding: '6px 14px', width: 'fit-content' }}
             >
-              <span aria-hidden="true">⚡</span>
               <span>Certified Personal Trainer</span>
             </div>
           </motion.div>
@@ -156,9 +155,9 @@ export default function HeroSection() {
           
           .hero-overlay {
             background: linear-gradient(75deg, 
-              rgba(10,5,5,0.95) 0%, 
-              rgba(10,5,5,0.8) 25%, 
-              rgba(10,5,5,0.4) 50%, 
+              rgba(10,5,5,0.88) 0%, 
+              rgba(10,5,5,0.65) 30%, 
+              rgba(10,5,5,0.25) 60%, 
               transparent 100%
             );
           }
@@ -183,9 +182,9 @@ export default function HeroSection() {
             }
             .hero-overlay {
               background: linear-gradient(180deg, 
-                rgba(10,5,5,0.4) 0%, 
-                rgba(10,5,5,0.6) 40%, 
-                rgba(10,5,5,0.9) 100%
+                rgba(10,5,5,0.3) 0%, 
+                rgba(10,5,5,0.5) 40%, 
+                rgba(10,5,5,0.85) 100%
               ) !important;
             }
           }

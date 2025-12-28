@@ -100,11 +100,11 @@ export default function TransformationsSection() {
               >
                 <div style={{
                 overflow: 'hidden',
-                  borderRadius: '4px',
+                  borderRadius: '16px',
                   backgroundColor: '#000',
-                  boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.45)',
                   aspectRatio: aspectRatios[idx],
-                  border: '1px solid rgba(255,255,255,0.05)'
+                  border: '1px solid rgba(255,255,255,0.08)'
                 }}>
                   <motion.img
                   src={t.imageSrc}
@@ -116,14 +116,14 @@ export default function TransformationsSection() {
                     width: '100%',
                       height: '100%',
                     objectFit: 'cover',
-                      filter: idx % 2 === 0 ? 'grayscale(1) contrast(1.1)' : 'contrast(1.1) brightness(0.85)',
+                      filter: idx % 2 === 0 ? 'grayscale(0.3) contrast(1.05)' : 'contrast(1.05) brightness(0.92)',
                   }}
                 />
                   {/* Subtle editorial overlay */}
                   <div style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.6) 100%)',
+                    background: 'linear-gradient(180deg, transparent 75%, rgba(0,0,0,0.4) 100%)',
                     pointerEvents: 'none'
                   }} />
                 </div>

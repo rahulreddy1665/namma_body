@@ -43,7 +43,7 @@ export default function ContactSection() {
           style={{
             padding: 18,
             borderRadius: 18,
-            background: 'linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03))',
+            background: 'rgba(255, 255, 255, 0.04)',
           }}
         >
           <form
@@ -150,8 +150,8 @@ export default function ContactSection() {
               border-color: rgba(255,255,255,.18) !important;
             }
             input:focus, textarea:focus, select:focus {
-              border-color: rgba(255,200,0,.4) !important;
-              background: rgba(0,0,0,.3) !important;
+              border-color: rgba(255,200,0,.35) !important;
+              background: rgba(0,0,0,.25) !important;
             }
           `}
         </style>

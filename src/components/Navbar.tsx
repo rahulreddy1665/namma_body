@@ -52,6 +52,7 @@ function Logo() {
         className="navbar-logo-text"
         style={{
           fontWeight: 850,
+          fontSize: 24,
           letterSpacing: '-0.02em',
           textShadow: '0 2px 8px rgba(0,0,0,0.3)',
           background: 'linear-gradient(135deg, #FFC800, #DC2626)',
@@ -144,9 +145,9 @@ export default function Navbar({ activeId }: Props) {
                     style={{
                       padding: '10px 12px',
                       borderRadius: 999,
-                      color: isActive ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.85)',
-                      border: isActive ? '1px solid rgba(255,200,0,.35)' : '1px solid transparent',
-                      background: isActive ? 'rgba(255,200,0,.12)' : 'transparent',
+                      color: isActive ? 'rgba(255,255,255,.95)' : 'rgba(255,255,255,.75)',
+                      border: isActive ? '1px solid rgba(255,200,0,.25)' : '1px solid transparent',
+                      background: isActive ? 'rgba(255,200,0,.08)' : 'transparent',
                       transition: 'background 160ms ease, border-color 160ms ease, color 160ms ease',
                       fontWeight: 650,
                       fontSize: 14,
@@ -209,11 +210,11 @@ export default function Navbar({ activeId }: Props) {
            .navbar--transparent {
   background: linear-gradient(
     180deg,
-    rgba(15, 12, 10, 0.55),
-    rgba(15, 12, 10, 0.25),
-    rgba(15, 12, 10, 0)
+    rgba(10, 5, 5, 0.4),
+    rgba(10, 5, 5, 0.15),
+    rgba(10, 5, 5, 0)
   ) !important;
-  backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(110%);
 }
             .navbar--scrolled {
               background: rgba(10,5,5,0.3) !important;
@@ -271,7 +272,7 @@ export default function Navbar({ activeId }: Props) {
                         padding: '12px 12px',
                         borderRadius: 14,
                         border: '1px solid rgba(255,255,255,.08)',
-                        background: isActive ? 'rgba(255,200,0,.15)' : 'rgba(255,255,255,.05)',
+                        background: isActive ? 'rgba(255,200,0,.1)' : 'rgba(255,255,255,.05)',
                         color: 'rgba(255,255,255,.92)',
                         fontWeight: 700,
                         cursor: 'pointer',
