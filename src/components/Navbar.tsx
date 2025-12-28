@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Container from './Container'
-import logoImage from '../assets/logo.jpeg'
 
 type NavId = 'about' | 'transformations' | 'programs' | 'contact'
 
