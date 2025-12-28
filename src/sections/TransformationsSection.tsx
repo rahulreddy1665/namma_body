@@ -64,7 +64,7 @@ export default function TransformationsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          style={{ 
+          style={{
             display: 'flex', 
             flexWrap: 'nowrap',
             gap: '12px',
@@ -89,7 +89,7 @@ export default function TransformationsSection() {
                   zIndex: 20,
                   transition: { duration: 0.4 } 
                 }}
-                style={{
+              style={{
                   flex: '1 1 0',
                   minWidth: '160px',
                   maxWidth: '280px',
@@ -99,7 +99,7 @@ export default function TransformationsSection() {
                 }}
               >
                 <div style={{
-                  overflow: 'hidden',
+                overflow: 'hidden',
                   borderRadius: '4px',
                   backgroundColor: '#000',
                   boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
@@ -107,18 +107,18 @@ export default function TransformationsSection() {
                   border: '1px solid rgba(255,255,255,0.05)'
                 }}>
                   <motion.img
-                    src={t.imageSrc}
-                    alt={t.imageAlt}
-                    loading="lazy"
-                    decoding="async"
-                    style={{
-                      display: 'block',
-                      width: '100%',
+                  src={t.imageSrc}
+                  alt={t.imageAlt}
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    display: 'block',
+                    width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                    objectFit: 'cover',
                       filter: idx % 2 === 0 ? 'grayscale(1) contrast(1.1)' : 'contrast(1.1) brightness(0.85)',
-                    }}
-                  />
+                  }}
+                />
                   {/* Subtle editorial overlay */}
                   <div style={{
                     position: 'absolute',
@@ -133,8 +133,8 @@ export default function TransformationsSection() {
         </motion.div>
       </Container>
 
-      <style>
-        {`
+        <style>
+          {`
           #transformations .container {
              width: 100%;
              max-width: 1440px;
@@ -150,14 +150,14 @@ export default function TransformationsSection() {
               margin-top: 0 !important;
               max-width: none !important;
             }
-          }
+            }
           @media (max-width: 640px) {
              #transformations div[style*="flex: 0 0 calc(33.333% - 16px)"] {
               flex: 0 0 calc(50% - 12px) !important;
             }
-          }
-        `}
-      </style>
+            }
+          `}
+        </style>
     </div>
   )
 }

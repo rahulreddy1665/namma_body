@@ -38,7 +38,7 @@ function Logo() {
       aria-label="Namma Body"
       style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}
     >
-      <img
+      {/* <img
         src={logoImage}
         alt=""
         style={{
@@ -48,7 +48,7 @@ function Logo() {
           objectFit: 'cover',
           boxShadow: '0 4px 12px rgba(0,0,0,0.25)',
         }}
-      />
+      /> */}
       <span
         className="navbar-logo-text"
         style={{
@@ -57,8 +57,8 @@ function Logo() {
           textShadow: '0 2px 8px rgba(0,0,0,0.3)',
         }}
       >
-        <span style={{ color: '#FFC800' }}>ನಮ್ಮ</span>
-        <span style={{ color: '#DC2626' }}> ಬಾಡಿ</span>
+        <span style={{ color: '#FFC800' }}>Namma</span>
+        <span style={{ color: '#DC2626' }}> Body</span>
       </span>
     </a>
   )
@@ -79,8 +79,16 @@ export default function Navbar({ activeId }: Props) {
   }, [open])
 
   useEffect(() => {
+    const THRESHOLD = 6
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > THRESHOLD)
+          ticking = false
+        })
+        ticking = true
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -89,29 +97,30 @@ export default function Navbar({ activeId }: Props) {
   const items = useMemo(() => NAV_ITEMS, [])
 
   return (
-    <header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
-      style={{
-        position: scrolled ? 'sticky' : 'absolute',
+      <header
+        className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
+        style={{
+        position: 'sticky',
         top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
         backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px)',
         background: scrolled ? 'rgba(10,5,5,0.3)' : 'transparent',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : 'none',
-        boxShadow: scrolled ? '0 1px 8px rgba(0,0,0,0.1)' : 'none',
-        transition: 'all 0.3s ease',
+        borderBottom: 'none',
+        boxShadow: scrolled ? '0 6px 28px rgba(0, 0, 0, 0.25)' : 'none',
+        transition: 'background 0.15s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        willChange: 'background, backdrop-filter',
       }}
     >
       <Container>
         <div
+          className="navbar-inner"
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: 16,
-            padding: '14px 0',
           }}
         >
           <Logo />
@@ -195,11 +204,19 @@ export default function Navbar({ activeId }: Props) {
         <style>
           {`
             .navbar--transparent {
-              background: transparent !important;
+              background: #050308 !important;
             }
             .navbar--scrolled {
               background: rgba(10,5,5,0.3) !important;
               backdrop-filter: blur(20px) saturate(180%) !important;
+            }
+            .navbar-inner {
+              padding: 14px 0;
+            }
+            @media (max-width: 640px) {
+              .navbar-inner {
+                padding: 10px 0;
+              }
             }
             @media (min-width: 860px) {
               .nav-links { display: inline-flex !important; }

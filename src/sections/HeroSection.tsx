@@ -100,19 +100,19 @@ export default function HeroSection() {
                 {HEADLINE.split(' ').map((word, wordIdx) => (
                   <span key={wordIdx} style={{ display: 'inline-block', whiteSpace: 'nowrap', marginRight: '0.25em' }}>
                     {word.split('').map((char, i) => (
-                      <motion.span
-                        key={i}
+                  <motion.span
+                    key={i}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{
+                    transition={{
                           duration: 0.4,
                           delay: 0.2 + (wordIdx * 5 + i) * 0.02,
-                          ease: 'easeOut',
-                        }}
+                      ease: 'easeOut',
+                    }}
                         style={{ display: 'inline-block' }}
-                      >
+                  >
                         {char}
-                      </motion.span>
+                  </motion.span>
                     ))}
                   </span>
                 ))}

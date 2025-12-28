@@ -22,19 +22,19 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
       >
         <div className="pill section-heading-pill" aria-hidden="true">
           <span className="section-heading-pointer">
-            <span
+          <span
               className="pointer-dot"
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: 999,
-                background:
-                  'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
-                boxShadow: '0 0 0 4px rgba(255,200,0,.12)',
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: 999,
+              background:
+                'linear-gradient(135deg, rgba(255,200,0,.95), rgba(220,38,38,.92))',
+              boxShadow: '0 0 0 4px rgba(255,200,0,.12)',
                 position: 'relative',
                 display: 'inline-block',
-              }}
-            />
+            }}
+          />
           </span>
           <span style={{ fontWeight: 650 }}>{eyebrow}</span>
         </div>

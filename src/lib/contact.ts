@@ -33,11 +33,17 @@ export async function sendContactMessage(
 
   // Get endpoint from environment variable (required)
   const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
-  
+
   if (!endpoint) {
+    // Debug: Log available env vars in development
+    if (import.meta.env.DEV) {
+      console.error('VITE_CONTACT_ENDPOINT is not set')
+      console.log('Available env vars:', Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')))
+    }
+    
     return {
       ok: false,
-      error: 'Contact endpoint not configured. Please set VITE_CONTACT_ENDPOINT environment variable.',
+      error: 'Contact endpoint not configured. Please set VITE_CONTACT_ENDPOINT environment variable in Netlify (Site settings → Environment variables) and redeploy.',
     }
   }
 
@@ -52,13 +58,13 @@ export async function sendContactMessage(
     message: `Name: ${payload.name}\n${payload.program ? `Program Interest: ${payload.program}\n` : ''}\nMessage:\n${payload.message}`,
   }
 
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(emailPayload),
-      signal: opts?.signal,
-    })
+        signal: opts?.signal,
+      })
 
     const data = await res.json().catch(() => ({ ok: false, error: 'Invalid response from server' }))
     
@@ -69,7 +75,7 @@ export async function sendContactMessage(
       }
     }
     
-    return { ok: true }
+  return { ok: true }
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
       return { ok: false, error: 'Request cancelled' }
