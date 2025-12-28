@@ -1,6 +1,6 @@
 import Container from './Container'
 import { motion } from 'framer-motion'
-import { Instagram, Facebook, Youtube } from 'lucide-react'
+import { Instagram,  Youtube } from 'lucide-react'
 
 export default function Footer() {
   const socialLinks = [

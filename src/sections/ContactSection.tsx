@@ -138,6 +138,21 @@ export default function ContactSection() {
               #contact .grid { grid-template-columns: 1fr !important; }
               #contact .grid > div { grid-column: auto !important; }
             }
+            select {
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+            }
+            select::-ms-expand {
+              display: none;
+            }
+            input:hover, textarea:hover, select:hover {
+              border-color: rgba(255,255,255,.18) !important;
+            }
+            input:focus, textarea:focus, select:focus {
+              border-color: rgba(255,200,0,.4) !important;
+              background: rgba(0,0,0,.3) !important;
+            }
           `}
         </style>
       </Container>
@@ -202,6 +217,10 @@ const fieldStyle: CSSProperties = {
   color: 'rgba(255,255,255,.92)',
   padding: '12px 12px',
   outline: 'none',
+  fontFamily: 'inherit',
+  fontSize: 14,
+  lineHeight: 1.5,
+  transition: 'border-color 160ms ease, background 160ms ease',
 }
 
 function SelectField({
@@ -219,25 +238,59 @@ function SelectField({
 }) {
   const id = `field-${label.toLowerCase().replace(/\s+/g, '-')}`
   return (
-    <div style={{ gridColumn: `span ${gridSpan}` }}>
+    <div style={{ gridColumn: `span ${gridSpan}`, position: 'relative' }}>
       <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 8 }}>
         {label}
       </label>
-      <select
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        style={{
-          ...fieldStyle,
-          cursor: 'pointer',
-        }}
-      >
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+      <div style={{ position: 'relative' }}>
+        <select
+          id={id}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          style={{
+            ...fieldStyle,
+            cursor: 'pointer',
+            appearance: 'none',
+            paddingRight: '40px',
+            transition: 'border-color 160ms ease, background 160ms ease',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(255,200,0,.4)'
+            e.currentTarget.style.background = 'rgba(0,0,0,.3)'
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,.12)'
+            e.currentTarget.style.background = 'rgba(0,0,0,.22)'
+          }}
+        >
+          {options.map((opt) => (
+            <option 
+              key={opt.value} 
+              value={opt.value}
+              style={{
+                background: 'rgba(10,5,5,0.95)',
+                color: opt.value === '' ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.92)',
+              }}
+            >
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <div
+          style={{
+            position: 'absolute',
+            right: 14,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            pointerEvents: 'none',
+            width: 0,
+            height: 0,
+            borderLeft: '5px solid transparent',
+            borderRight: '5px solid transparent',
+            borderTop: '6px solid rgba(255,255,255,.6)',
+          }}
+        />
+      </div>
     </div>
   )
 }
