@@ -137,6 +137,19 @@ export default function AboutSection() {
               #about .grid { grid-template-columns: 1fr !important; }
               #about .grid > div { grid-column: auto !important; }
             }
+            @media (max-width: 768px) {
+              #about .card[style*="height: 400px"] {
+                height: 280px !important;
+              }
+              #about .grid {
+                gap: 16px !important;
+              }
+            }
+            @media (max-width: 640px) {
+              #about .card[style*="height: 400px"] {
+                height: 240px !important;
+              }
+            }
           `}
         </style>
       </Container>

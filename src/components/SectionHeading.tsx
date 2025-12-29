@@ -46,10 +46,16 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
       </motion.div>
       <style>
         {`
+          @media (max-width: 768px) {
+            .section-heading-wrapper {
+              gap: 10px !important;
+              margin-bottom: 12px !important;
+            }
+          }
           @media (max-width: 640px) {
             .section-heading-wrapper {
               gap: 8px !important;
-              margin-bottom: 14px !important;
+              margin-bottom: 10px !important;
             }
             .section-heading-pill {
               margin-bottom: 6px;

@@ -75,11 +75,20 @@ export default function LazySection({ id, title, minHeight, load }: Props) {
       ref={(node) => {
         sectionRef.current = node
       }}
-      className="section"
+      className="section lazy-section"
       style={{ minHeight: Loaded ? undefined : minHeight }}
       aria-label={title}
     >
       {Loaded ? <Loaded /> : <Skeleton title={title} />}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .lazy-section {
+              min-height: auto !important;
+            }
+          }
+        `}
+      </style>
     </section>
   )
 }

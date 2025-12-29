@@ -64,6 +64,7 @@ export default function TransformationsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
+          className="transformations-container"
           style={{
             display: 'flex', 
             flexWrap: 'nowrap',
@@ -140,7 +141,7 @@ export default function TransformationsSection() {
              max-width: 1440px;
           }
           @media (max-width: 1024px) {
-            #transformations div[style*="flex-wrap: nowrap"] {
+            #transformations .transformations-container {
               flex-wrap: wrap !important;
               justify-content: center !important;
               gap: 20px !important;
@@ -151,19 +152,28 @@ export default function TransformationsSection() {
               margin-top: 0 !important;
               max-width: none !important;
             }
-            }
-          @media (max-width: 640px) {
-             #transformations div[style*="flex: 0 0 calc(33.333% - 16px)"] {
-              flex: 0 0 calc(50% - 12px) !important;
-            }
-            #transformations div[style*="flex-wrap: nowrap"] {
-              min-height: 280px !important;
-              gap: 16px !important;
+          }
+          @media (max-width: 768px) {
+            #transformations .transformations-container {
+              min-height: auto !important;
+              padding-bottom: 0 !important;
             }
             #transformations div[style*="marginBottom"] {
               margin-bottom: 16px !important;
             }
+          }
+          @media (max-width: 640px) {
+             #transformations div[style*="flex: 0 0 calc(33.333% - 16px)"] {
+              flex: 0 0 calc(50% - 12px) !important;
             }
+            #transformations .transformations-container {
+              min-height: auto !important;
+              gap: 16px !important;
+            }
+            #transformations div[style*="marginBottom"] {
+              margin-bottom: 12px !important;
+            }
+          }
           `}
         </style>
     </div>

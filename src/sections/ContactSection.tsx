@@ -138,6 +138,30 @@ export default function ContactSection() {
               #contact .grid { grid-template-columns: 1fr !important; }
               #contact .grid > div { grid-column: auto !important; }
             }
+            @media (max-width: 768px) {
+              #contact .card {
+                padding: 16px !important;
+                margin-bottom: 0 !important;
+              }
+              #contact .grid {
+                gap: 12px !important;
+              }
+              #contact form > div[style*="marginTop: 16"] {
+                margin-top: 14px !important;
+              }
+              #contact div[style*="marginTop: 12"] {
+                margin-top: 10px !important;
+                min-height: 20px !important;
+              }
+            }
+            @media (max-width: 640px) {
+              #contact .card {
+                padding: 14px !important;
+              }
+              #contact .grid {
+                gap: 10px !important;
+              }
+            }
             select {
               -webkit-appearance: none;
               -moz-appearance: none;

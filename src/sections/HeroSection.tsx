@@ -20,6 +20,7 @@ export default function HeroSection() {
         alignItems: 'center',
         overflow: 'hidden',
       }}
+      className="hero-section"
     >
       <div
         aria-hidden="true"
@@ -186,6 +187,16 @@ export default function HeroSection() {
                 rgba(10,5,5,0.5) 40%, 
                 rgba(10,5,5,0.85) 100%
               ) !important;
+            }
+          }
+          
+          @media (max-width: 768px) {
+            .hero-section {
+              min-height: auto !important;
+              padding: 0 0 60px !important;
+            }
+            .hero-content {
+              margin-top: clamp(100px, 12vh, 160px) !important;
             }
           }
         `}

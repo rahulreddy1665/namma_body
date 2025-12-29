@@ -224,8 +224,19 @@ export default function ProgramsSection() {
             @media (max-width: 940px) {
               #programs .grid > article { grid-column: span 12 !important; }
             }
+            @media (max-width: 768px) {
+              #programs .grid {
+                gap: 14px !important;
+              }
+              #programs .card {
+                margin-bottom: 0 !important;
+              }
+            }
             @media (max-width: 640px) {
               #programs .grid > article { grid-column: span 12 !important; }
+              #programs .grid {
+                gap: 12px !important;
+              }
             }
           `}
         </style>
