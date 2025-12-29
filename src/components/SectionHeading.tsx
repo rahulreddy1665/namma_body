@@ -14,7 +14,8 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
   return (
     <Container>
       <motion.div
-        style={{ display: 'grid', gap: 12, marginBottom: 22 }}
+        className="section-heading-wrapper"
+        style={{ display: 'grid', gap: 12, marginBottom: 18 }}
         initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
@@ -43,6 +44,25 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
         </h2>
         {description ? <p className="lead">{description}</p> : null}
       </motion.div>
+      <style>
+        {`
+          @media (max-width: 640px) {
+            .section-heading-wrapper {
+              gap: 8px !important;
+              margin-bottom: 14px !important;
+            }
+            .section-heading-pill {
+              margin-bottom: 6px;
+            }
+            .h2 {
+              margin-bottom: 4px;
+            }
+            .lead {
+              margin-top: 8px !important;
+            }
+          }
+        `}
+      </style>
     </Container>
   )
 }

@@ -113,18 +113,30 @@ a {
 }
 
 .container {
-  width: min(var(--container), calc(100% - 40px));
+  width: min(var(--container), calc(100% - 60px));
   margin-inline: auto;
 }
 
 .section {
-  padding: 48px 0;
+  padding: 32px 0;
   position: relative;
   z-index: 1;
 }
 
+@media (max-width: 640px) {
+  .section {
+    padding: 24px 0;
+  }
+}
+
 .section--tight {
-  padding: 32px 0;
+  padding: 24px 0;
+}
+
+@media (max-width: 640px) {
+  .section--tight {
+    padding: 18px 0;
+  }
 }
 
 .section::before {

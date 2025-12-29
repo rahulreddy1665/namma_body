@@ -36,11 +36,11 @@ export default function TransformationsSection() {
 
   return (
     <div style={{ 
-      paddingBottom: '20px',
+      paddingBottom: '0px',
       background: 'transparent' 
     }}>
       <Container>
-        <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+        <div style={{ marginBottom: '24px', textAlign: 'center' }}>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export default function TransformationsSection() {
             gap: '12px',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: '450px',
+            minHeight: '380px',
             padding: '0 10px'
           }}
         >
@@ -143,7 +143,8 @@ export default function TransformationsSection() {
             #transformations div[style*="flex-wrap: nowrap"] {
               flex-wrap: wrap !important;
               justify-content: center !important;
-              gap: 24px !important;
+              gap: 20px !important;
+              min-height: 320px !important;
             }
             #transformations div[style*="flex: 1 1 0"] {
               flex: 0 0 calc(33.333% - 16px) !important;
@@ -154,6 +155,13 @@ export default function TransformationsSection() {
           @media (max-width: 640px) {
              #transformations div[style*="flex: 0 0 calc(33.333% - 16px)"] {
               flex: 0 0 calc(50% - 12px) !important;
+            }
+            #transformations div[style*="flex-wrap: nowrap"] {
+              min-height: 280px !important;
+              gap: 16px !important;
+            }
+            #transformations div[style*="marginBottom"] {
+              margin-bottom: 16px !important;
             }
             }
           `}
