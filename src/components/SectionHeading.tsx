@@ -15,7 +15,7 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
     <Container>
       <motion.div
         className="section-heading-wrapper"
-        style={{ display: 'grid', gap: 12, marginBottom: 18 }}
+        style={{  marginBottom: 14 }}
         initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}

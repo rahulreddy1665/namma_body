@@ -80,6 +80,49 @@ function renderSubtitleWithHighlight(text: string, highlightTerms: string[]) {
   return <>{parts.length > 0 ? parts : text}</>
 }
 
+// Helper function to highlight only specific terms for 6-month plan
+function renderWithSelectiveHighlight(text: string, highlightTerms: string[]) {
+  if (highlightTerms.length === 0) return text
+
+  const parts: (string | React.ReactElement)[] = []
+  let lastIndex = 0
+  let matchIndex = 0
+
+  // Create regex pattern for all terms (case-insensitive)
+  const pattern = highlightTerms
+    .map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('|')
+  const regex = new RegExp(`\\b(${pattern})\\b`, 'gi')
+
+  let match
+  while ((match = regex.exec(text)) !== null) {
+    // Add text before match
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index))
+    }
+    // Add highlighted term with bold emphasis
+    parts.push(
+      <strong
+        key={matchIndex++}
+        style={{
+          fontWeight: 700,
+          color: 'rgba(255,255,255,0.95)',
+        }}
+      >
+        {match[0]}
+      </strong>
+    )
+    lastIndex = match.index + match[0].length
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex))
+  }
+
+  return <>{parts.length > 0 ? parts : text}</>
+}
+
 
 export default function ProgramsSection() {
   const reduceMotion = useReducedMotion()
@@ -103,11 +146,14 @@ export default function ProgramsSection() {
           {PROGRAMS.map((p, idx) => {
             const isRecommended = p.isRecommended
             const isMonthly = p.tier === 'monthly'
+            const isSixMonths = p.tier === 'sixMonths'
             const subtitleHighlightTerms = p.tier === 'threeMonths'
-              ? ['Muscle gain', 'Fat loss']
+              ? []
               : p.tier === 'sixMonths'
-              ? ['Fat loss', 'Muscle gain', 'Body recomp']
+              ? ['Fat loss', 'Muscle gain', 'Body recomp', 'Performance']
               : []
+            // Terms to highlight for 6-month plan features
+            const sixMonthsHighlightTerms = ['periodized', 'priority', 'full progress', 'lifestyle']
             
             return (
               <motion.article
@@ -191,7 +237,7 @@ export default function ProgramsSection() {
                   <ul style={{ margin: '16px 0 0', paddingLeft: 18, color: isMonthly ? 'rgba(255,255,255,.70)' : 'rgba(255,255,255,.78)' }}>
                     {p.features.map((feature, featureIdx) => (
                       <li key={featureIdx} style={{ margin: '8px 0', fontSize: 13, lineHeight: 1.5 }}>
-                        {renderBoldCaps(feature)}
+                        {isSixMonths ? renderWithSelectiveHighlight(feature, sixMonthsHighlightTerms) : renderBoldCaps(feature)}
                       </li>
                     ))}
                   </ul>

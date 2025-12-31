@@ -52,7 +52,7 @@ function Logo() {
         className="navbar-logo-text"
         style={{
           fontWeight: 850,
-          fontSize: 24,
+          fontSize: 'clamp(16px, 2.5vw, 20px)',
           letterSpacing: '-0.02em',
           textShadow: '0 2px 8px rgba(0,0,0,0.3)',
           background: 'linear-gradient(135deg, #FFC800, #DC2626)',
@@ -60,6 +60,7 @@ function Logo() {
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
           color: 'transparent',
+          fontFamily: '"Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif',
         }}
       >
         Namma Body
@@ -149,10 +150,11 @@ export default function Navbar({ activeId }: Props) {
                       border: isActive ? '1px solid rgba(255,200,0,.25)' : '1px solid transparent',
                       background: isActive ? 'rgba(255,200,0,.08)' : 'transparent',
                       transition: 'background 160ms ease, border-color 160ms ease, color 160ms ease',
-                      fontWeight: 650,
-                      fontSize: 14,
+                      fontWeight: 600,
+                      fontSize: 'clamp(11px, 1.5vw, 13px)',
                       cursor: 'pointer',
                       textShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                      fontFamily: '"Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif',
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
@@ -200,7 +202,12 @@ export default function Navbar({ activeId }: Props) {
                   }}
                 />
               </span>
-              <span style={{ fontSize: 14, fontWeight: 700, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>Menu</span>
+              <span style={{ 
+                fontSize: 'clamp(11px, 1.5vw, 13px)', 
+                fontWeight: 600, 
+                textShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                fontFamily: '"Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif',
+              }}>Menu</span>
             </button>
           </nav>
         </div>
@@ -227,10 +234,18 @@ export default function Navbar({ activeId }: Props) {
               .navbar-inner {
                 padding: 10px 0;
               }
+              .navbar-logo-text {
+                font-size: 18px !important;
+              }
             }
             @media (min-width: 860px) {
               .nav-links { display: inline-flex !important; }
               header button[aria-controls="mobile-menu"] { display: none !important; }
+            }
+            @media (min-width: 1024px) {
+              .navbar-logo-text {
+                font-size: 20px !important;
+              }
             }
           `}
         </style>
@@ -274,9 +289,11 @@ export default function Navbar({ activeId }: Props) {
                         border: '1px solid rgba(255,255,255,.08)',
                         background: isActive ? 'rgba(255,200,0,.1)' : 'rgba(255,255,255,.05)',
                         color: 'rgba(255,255,255,.92)',
-                        fontWeight: 700,
+                        fontWeight: 600,
+                        fontSize: 'clamp(12px, 2vw, 14px)',
                         cursor: 'pointer',
                         transition: 'background 160ms ease, border-color 160ms ease',
+                        fontFamily: '"Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif',
                       }}
                       onMouseEnter={(e) => {
                         if (!isActive) {

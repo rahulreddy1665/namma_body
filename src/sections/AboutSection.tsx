@@ -11,7 +11,9 @@ export default function AboutSection() {
         eyebrow="About"
         title="Certified coaching, engineered for results."
         description="NAMMA BODY is a place where you come as you are, give your best, and take responsibility for your fitness journey.
-            We help you achieve your fitness goals the right  way."
+            We help you achieve your fitness goals the right  way.
+            Meet Raj
+A highly committed natural bodybuilding athlete with competitive success and professional expertise in fitness coaching ,Raj has guided individuals from around the world toward sustainable transformations, improved health, and elite performance through structured training and personalized nutrition"
       />
 
       <Container>

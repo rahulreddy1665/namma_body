@@ -5,8 +5,7 @@ import { Instagram,  Youtube } from 'lucide-react'
 export default function Footer() {
   const socialLinks = [
     { icon: Instagram, href: 'https://www.instagram.com/nammabody?igsh=Ynk4NDVxZWpvam5w&utm_source=qr', label: 'Instagram' },
-    // { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+    
   ]
 
   return (
@@ -28,15 +27,13 @@ export default function Footer() {
             paddingTop: 40,
           }}
         >
-         
-
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               width: '100%',
-              gap: 16,
+              gap: 6,
               flexWrap: 'wrap',
               marginTop: 20
             }}

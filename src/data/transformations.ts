@@ -1,6 +1,6 @@
-import transformation1 from '../assets/transformation1.png'
-import transformation2 from '../assets/transformation2.png'
-import transformation3 from '../assets/transformation3.png'
+import transformation1 from '../assets/transformation1.jpeg'
+import transformation2 from '../assets/transformation2.jpeg'
+import transformation3 from '../assets/transformation3.jpeg'
 
 export type Transformation = {
   name: string

@@ -1,38 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Container from '../components/Container'
 import { TRANSFORMATIONS } from '../data/transformations'
 
 export default function TransformationsSection() {
+  const reduceMotion = useReducedMotion()
   // Use all 3 transformations for the editorial look
   const displayTransformations = TRANSFORMATIONS
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 40,
-      scale: 0.95
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.21, 0.45, 0.32, 0.9] as const
-      }
-    }
-  }
 
   return (
     <div style={{ 
@@ -59,20 +32,18 @@ export default function TransformationsSection() {
           </motion.h2>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+        <div 
           className="transformations-container"
           style={{
             display: 'flex', 
             flexWrap: 'nowrap',
-            gap: '12px',
+            gap: '16px',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: '380px',
-            padding: '0 10px'
+            minHeight: '280px',
+            padding: '0 10px',
+            maxWidth: '100%',
+            overflow: 'hidden'
           }}
         >
           {displayTransformations.map((t, idx) => {
@@ -84,54 +55,139 @@ export default function TransformationsSection() {
             return (
               <motion.div
                 key={t.name}
-                variants={itemVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.1 }}
                 whileHover={{ 
                   scale: 1.02, 
                   zIndex: 20,
                   transition: { duration: 0.4 } 
                 }}
-              style={{
-                  flex: '1 1 0',
-                  minWidth: '160px',
-                  maxWidth: '280px',
+                style={{
+                  flex: '0 1 auto',
+                  minWidth: '180px',
+                  maxWidth: '320px',
+                  width: '100%',
                   position: 'relative',
                   marginTop: `${offsets[idx]}px`,
                   zIndex: zIndices[idx],
                 }}
               >
                 <div style={{
-                overflow: 'hidden',
+                  overflow: 'hidden',
                   borderRadius: '16px',
                   backgroundColor: '#000',
                   boxShadow: '0 20px 50px rgba(0,0,0,0.45)',
                   aspectRatio: aspectRatios[idx],
-                  border: '1px solid rgba(255,255,255,0.08)'
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  position: 'relative',
+                  height: 'auto'
                 }}>
-                  <motion.img
-                  src={t.imageSrc}
-                  alt={t.imageAlt}
-                  loading="lazy"
-                  decoding="async"
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                      height: '100%',
-                    objectFit: 'cover',
-                      filter: idx % 2 === 0 ? 'grayscale(0.3) contrast(1.05)' : 'contrast(1.05) brightness(0.92)',
-                  }}
-                />
+                  {/* Left Half */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      clipPath: 'inset(0 50% 0 0)',
+                      zIndex: 2,
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: '#000',
+                    }}
+                    variants={{
+                      initial: { x: reduceMotion ? 0 : '-100%', opacity: reduceMotion ? 1 : 0 },
+                      animate: { x: 0, opacity: 1 },
+                    }}
+                    transition={{ 
+                      duration: 1.1, 
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: idx * 0.15
+                    }}
+                  >
+                    <motion.img
+                      src={t.imageSrc}
+                      alt={`${t.imageAlt} Left`}
+                      loading="lazy"
+                      decoding="async"
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        filter: idx % 2 === 0 ? 'grayscale(0.3) contrast(1.05)' : 'contrast(1.05) brightness(0.92)',
+                      }}
+                      variants={{
+                        initial: { scale: reduceMotion ? 1 : 1.1 },
+                        animate: { scale: 1 },
+                      }}
+                      transition={{ 
+                        duration: 1.4, 
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: idx * 0.15
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* Right Half */}
+                  <motion.div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      clipPath: 'inset(0 0 0 50%)',
+                      zIndex: 2,
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: '#000',
+                    }}
+                    variants={{
+                      initial: { x: reduceMotion ? 0 : '100%', opacity: reduceMotion ? 1 : 0 },
+                      animate: { x: 0, opacity: 1 },
+                    }}
+                    transition={{ 
+                      duration: 1.1, 
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: idx * 0.15
+                    }}
+                  >
+                    <motion.img
+                      src={t.imageSrc}
+                      alt={`${t.imageAlt} Right`}
+                      loading="lazy"
+                      decoding="async"
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        filter: idx % 2 === 0 ? 'grayscale(0.3) contrast(1.05)' : 'contrast(1.05) brightness(0.92)',
+                      }}
+                      variants={{
+                        initial: { scale: reduceMotion ? 1 : 1.1 },
+                        animate: { scale: 1 },
+                      }}
+                      transition={{ 
+                        duration: 1.4, 
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: idx * 0.15
+                      }}
+                    />
+                  </motion.div>
+
                   {/* Subtle editorial overlay */}
                   <div style={{
                     position: 'absolute',
                     inset: 0,
                     background: 'linear-gradient(180deg, transparent 75%, rgba(0,0,0,0.4) 100%)',
-                    pointerEvents: 'none'
+                    pointerEvents: 'none',
+                    zIndex: 3
                   }} />
                 </div>
               </motion.div>
             )
           })}
-        </motion.div>
+        </div>
       </Container>
 
         <style>
@@ -145,9 +201,9 @@ export default function TransformationsSection() {
               flex-wrap: wrap !important;
               justify-content: center !important;
               gap: 20px !important;
-              min-height: 320px !important;
+              min-height: 240px !important;
             }
-            #transformations div[style*="flex: 1 1 0"] {
+            #transformations div[style*="flex: 0 1 auto"] {
               flex: 0 0 calc(33.333% - 16px) !important;
               margin-top: 0 !important;
               max-width: none !important;
