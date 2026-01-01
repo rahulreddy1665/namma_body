@@ -26,22 +26,7 @@ export const PROGRAMS: Program[] = [
       'Full WHATSAPP support',
     ],
   },
-  {
-    title: '3-Month Plan',
-    subtitle: '(Workout plan update for every 5 WEEK once , Diet adjustment based on BODY PROGRESS )',
-    tag: 'Progress',
-    tier: 'threeMonths',
-    tierLabel: 'Progress Phase',
-    pricing: '₹15,000',
-    features: [
-      '1ON1 ONBOARDING consultation call',
-      'GOAL ORIENTED workout plan',
-      'CUSTOMISED Diet Plan',
-      'Full WHATSAPP support',
-      '(WORKOUT PLAN update every 5 WEEK once)',
-      '(DIET adjustment based on Body Progress)',
-    ],
-  },
+ 
   {
     title: '6-Month Plan',
     subtitle: 'Complete transformation with periodized training and lifestyle coaching for Fat loss, Muscle gain, Body recomp & Performance',
@@ -58,6 +43,22 @@ export const PROGRAMS: Program[] = [
       'priority whatsapp support',
       'full progress tracking + reviews',
       'habit & lifestyle coaching',
+    ],
+  },
+  {
+    title: '3-Month Plan',
+    subtitle: '(Workout plan update for every 5 WEEK once , Diet adjustment based on BODY PROGRESS )',
+    tag: 'Progress',
+    tier: 'threeMonths',
+    tierLabel: 'Progress Phase',
+    pricing: '₹15,000',
+    features: [
+      '1ON1 ONBOARDING consultation call',
+      'GOAL ORIENTED workout plan',
+      'CUSTOMISED Diet Plan',
+      'Full WHATSAPP support',
+      '(WORKOUT PLAN update every 5 WEEK once)',
+      '(DIET adjustment based on Body Progress)',
     ],
   },
 ]

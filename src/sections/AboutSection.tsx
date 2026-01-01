@@ -9,7 +9,7 @@ export default function AboutSection() {
     <>
       <SectionHeading
         eyebrow="About"
-        title="Certified coaching, engineered for results."
+        title="Science-based coaching, engineered for results."
         description="NAMMA BODY is a place where you come as you are, give your best, and take responsibility for your fitness journey.
             We help you achieve your fitness goals the right  way.
             Meet Raj

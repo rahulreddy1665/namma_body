@@ -19,6 +19,7 @@ export default function HeroSection() {
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
+        marginTop: 0,
       }}
       className="hero-section"
     >

@@ -105,16 +105,13 @@ export default function Navbar({ activeId }: Props) {
     <header
       className={`navbar ${scrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
       style={{
-        position: scrolled ? 'sticky' : 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
-        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'blur(0px)',
-        background: scrolled ? 'rgba(10,5,5,0.3)' : 'transparent',
         borderBottom: 'none',
-        boxShadow: scrolled ? '0 6px 28px rgba(0, 0, 0, 0.25)' : 'none',
-        transition: 'background 0.15s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        transition: 'background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         willChange: 'background, backdrop-filter',
       }}
     >
@@ -217,14 +214,14 @@ export default function Navbar({ activeId }: Props) {
            .navbar--transparent {
   background: linear-gradient(
     180deg,
-    rgba(10, 5, 5, 0.4),
-    rgba(10, 5, 5, 0.15),
+    rgba(10, 5, 5, 0.25),
+    rgba(10, 5, 5, 0.1),
     rgba(10, 5, 5, 0)
   ) !important;
-  backdrop-filter: blur(8px) saturate(110%);
+  backdrop-filter: blur(4px) saturate(100%);
 }
             .navbar--scrolled {
-              background: rgba(10,5,5,0.3) !important;
+              background: rgba(10,5,5,0.35) !important;
               backdrop-filter: blur(20px) saturate(180%) !important;
             }
             .navbar-inner {
