@@ -164,6 +164,70 @@ export default function HeroSection() {
             );
           }
 
+          /* Ultra-wide screens */
+          @media (min-width: 2560px) {
+            .hero-section {
+              min-height: 95vh !important;
+            }
+            .hero-content {
+              max-width: 900px !important;
+            }
+            .h1 {
+              font-size: clamp(3rem, 5vw, 4.5rem) !important;
+            }
+            .lead {
+              font-size: clamp(1.35rem, 1.8vw, 1.6rem) !important;
+            }
+          }
+
+          /* Large Desktop */
+          @media (min-width: 1920px) and (max-width: 2559px) {
+            .hero-section {
+              min-height: 100vh !important;
+            }
+            .hero-content {
+              max-width: 800px !important;
+            }
+            .h1 {
+              font-size: clamp(2.5rem, 4.5vw, 3.8rem) !important;
+            }
+            .lead {
+              font-size: clamp(1.3rem, 1.6vw, 1.5rem) !important;
+            }
+          }
+
+          /* Desktop */
+          @media (min-width: 1440px) and (max-width: 1919px) {
+            .hero-section {
+              min-height: 100vh !important;
+            }
+            .hero-content {
+              max-width: 720px !important;
+            }
+          }
+
+          @media (min-width: 1024px) and (max-width: 1439px) {
+            .hero-section {
+              min-height: 90vh !important;
+            }
+            .hero-content {
+              max-width: 640px !important;
+              margin-top: clamp(120px, 13vh, 180px) !important;
+            }
+          }
+
+          /* Tablet */
+          @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-section {
+              min-height: 85vh !important;
+              padding: 0 0 70px !important;
+            }
+            .hero-content {
+              max-width: 90% !important;
+              margin-top: clamp(110px, 12vh, 160px) !important;
+            }
+          }
+
           @media (max-width: 860px) {
             .hero-content {
               text-align: center !important;
@@ -191,13 +255,23 @@ export default function HeroSection() {
             }
           }
           
-          @media (max-width: 768px) {
+          /* Mobile */
+          @media (max-width: 767px) {
             .hero-section {
               min-height: auto !important;
               padding: 0 0 60px !important;
             }
             .hero-content {
-              margin-top: clamp(100px, 12vh, 160px) !important;
+              margin-top: clamp(100px, 12vh, 140px) !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .hero-section {
+              padding: 0 0 50px !important;
+            }
+            .hero-content {
+              margin-top: clamp(90px, 10vh, 120px) !important;
             }
           }
         `}

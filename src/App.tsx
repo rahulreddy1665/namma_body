@@ -30,6 +30,12 @@ function App() {
           load={() => import('./sections/AboutSection')}
         />
         <LazySection
+          id="our-aim"
+          title="Our Aim"
+          minHeight={400}
+          load={() => import('./sections/OurAimSection')}
+        />
+        <LazySection
           id="transformations"
           title="Transformations"
           minHeight={720}

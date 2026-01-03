@@ -15,7 +15,7 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
     <Container>
       <motion.div
         className="section-heading-wrapper"
-        style={{  marginBottom: 14 }}
+        style={{  marginBottom: 'var(--content-gap-sm)' }} /* 8px */
         initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
@@ -46,19 +46,67 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
       </motion.div>
       <style>
         {`
-          @media (max-width: 768px) {
+          /* Ultra-wide screens */
+          @media (min-width: 2560px) {
             .section-heading-wrapper {
-              gap: 10px !important;
-              margin-bottom: 12px !important;
+              max-width: 1400px;
+              margin: 0 auto 12px auto !important;
+            }
+            .section-heading-pill {
+              font-size: 16px !important;
+              padding: 10px 16px !important;
             }
           }
-          @media (max-width: 640px) {
+
+          /* Large Desktop */
+          @media (min-width: 1920px) and (max-width: 2559px) {
+            .section-heading-wrapper {
+              max-width: 1200px;
+              margin: 0 auto 10px auto !important;
+            }
+            .section-heading-pill {
+              font-size: 15px !important;
+            }
+          }
+
+          /* Desktop */
+          @media (min-width: 1440px) and (max-width: 1919px) {
+            .section-heading-wrapper {
+              max-width: 1000px;
+              margin-bottom: 8px !important;
+            }
+          }
+
+          @media (min-width: 1024px) and (max-width: 1439px) {
+            .section-heading-wrapper {
+              margin-bottom: 8px !important;
+            }
+          }
+
+          /* Tablet */
+          @media (min-width: 768px) and (max-width: 1023px) {
+            .section-heading-wrapper {
+              margin-bottom: 6px !important;
+            }
+          }
+
+          /* Mobile */
+          @media (max-width: 767px) {
             .section-heading-wrapper {
               gap: 8px !important;
-              margin-bottom: 10px !important;
+              margin-bottom: 6px !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .section-heading-wrapper {
+              gap: 6px !important;
+              margin-bottom: 4px !important;
             }
             .section-heading-pill {
               margin-bottom: 6px;
+              font-size: 13px !important;
+              padding: 7px 11px !important;
             }
             .h2 {
               margin-bottom: 4px;

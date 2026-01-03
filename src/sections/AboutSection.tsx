@@ -10,10 +10,7 @@ export default function AboutSection() {
       <SectionHeading
         eyebrow="About"
         title="Science-based coaching, engineered for results."
-        description="NAMMA BODY is a place where you come as you are, give your best, and take responsibility for your fitness journey.
-            We help you achieve your fitness goals the right  way.
-            Meet Raj
-A highly committed natural bodybuilding athlete with competitive success and professional expertise in fitness coaching ,Raj has guided individuals from around the world toward sustainable transformations, improved health, and elite performance through structured training and personalized nutrition"
+        description="At NAMMA BODY, we help busy individuals transform their bodies through disciplined training and sustainable nutrition . our methods are grounded in nutrition and exercise science, using whole foods that are accessible, practical, and effective with client safety and longterm success as our highest priorities."
       />
 
       <Container>
@@ -121,7 +118,7 @@ A highly committed natural bodybuilding athlete with competitive success and pro
           </motion.div>
 
           <motion.div
-            style={{ gridColumn: 'span 7', display: 'grid', gap: 14 }}
+            style={{ gridColumn: 'span 7', display: 'grid', gap: 'var(--content-gap-md)' }} /* 12px */
             initial={reduceMotion ? false : { opacity: 0, y: 10 }}
             whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
@@ -135,21 +132,80 @@ A highly committed natural bodybuilding athlete with competitive success and pro
 
         <style>
           {`
-            @media (max-width: 960px) {
-              #about .grid { grid-template-columns: 1fr !important; }
-              #about .grid > div { grid-column: auto !important; }
+            /* Ultra-wide screens */
+            @media (min-width: 2560px) {
+              #about .grid {
+                gap: 24px !important;
+                max-width: 2200px;
+                margin: 0 auto;
+              }
+              #about .card[style*="height: 400px"] {
+                height: 550px !important;
+              }
             }
-            @media (max-width: 768px) {
+
+            /* Large Desktop */
+            @media (min-width: 1920px) and (max-width: 2559px) {
+              #about .grid {
+                gap: 22px !important;
+                max-width: 1800px;
+                margin: 0 auto;
+              }
+              #about .card[style*="height: 400px"] {
+                height: 500px !important;
+              }
+            }
+
+            /* Desktop */
+            @media (min-width: 1440px) and (max-width: 1919px) {
+              #about .grid {
+                gap: 20px !important;
+              }
+              #about .card[style*="height: 400px"] {
+                height: 450px !important;
+              }
+            }
+
+            @media (min-width: 1024px) and (max-width: 1439px) {
+              #about .grid {
+                gap: 18px !important;
+              }
+            }
+
+            /* Tablet - Switch to single column */
+            @media (min-width: 768px) and (max-width: 1023px) {
+              #about .grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 18px !important;
+              }
+              #about .grid > div { 
+                grid-column: auto !important; 
+              }
+              #about .card[style*="height: 400px"] {
+                height: 320px !important;
+              }
+            }
+
+            /* Mobile */
+            @media (max-width: 767px) {
+              #about .grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 16px !important;
+              }
+              #about .grid > div { 
+                grid-column: auto !important; 
+              }
               #about .card[style*="height: 400px"] {
                 height: 280px !important;
               }
-              #about .grid {
-                gap: 16px !important;
-              }
             }
-            @media (max-width: 640px) {
+
+            @media (max-width: 480px) {
               #about .card[style*="height: 400px"] {
                 height: 240px !important;
+              }
+              #about .grid {
+                gap: 14px !important;
               }
             }
           `}
@@ -164,7 +220,7 @@ function MiniCard({ title, value, note }: { title: string; value: string; note: 
       <div
         className="card"
         style={{
-          padding: 18,
+          padding: '1.125rem', /* 18px */
           borderRadius: 18,
           background: 'rgba(255, 255, 255, 0.04)',
         }}

@@ -41,7 +41,7 @@ export default function ContactSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{
-            padding: 18,
+            padding: 'var(--content-gap-lg)', /* 16px */
             borderRadius: 18,
             background: 'rgba(255, 255, 255, 0.04)',
           }}
@@ -68,7 +68,7 @@ export default function ContactSection() {
               className="grid"
               style={{
                 gridTemplateColumns: 'repeat(12, 1fr)',
-                gap: 14,
+                gap: 'var(--content-gap-md)', /* 12px */
               }}
             >
               <Field
@@ -108,7 +108,7 @@ export default function ContactSection() {
               />
             </div>
 
-            <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginTop: 16 }}>
+            <div style={{ display: 'flex', gap: 'var(--content-gap-md)', alignItems: 'center', flexWrap: 'wrap', marginTop: 'var(--content-gap-md)' }}> {/* 12px */}
               <Button variant="primary" type="submit" disabled={!canSubmit || status.type === 'submitting'}>
                 {status.type === 'submitting' ? 'Sending…' : 'Send Message'}
               </Button>
@@ -121,7 +121,7 @@ export default function ContactSection() {
               id="contact-status"
               role="status"
               aria-live="polite"
-              style={{ marginTop: 12, minHeight: 22 }}
+              style={{ marginTop: 'var(--content-gap-sm)', minHeight: '1.25rem' }} /* 8px, 20px */
             >
               {status.type === 'success' ? (
                 <span style={{ color: 'rgba(34,230,168,.92)', fontWeight: 650 }}>{status.message}</span>
@@ -134,17 +134,73 @@ export default function ContactSection() {
 
         <style>
           {`
-            @media (max-width: 860px) {
-              #contact .grid { grid-template-columns: 1fr !important; }
-              #contact .grid > div { grid-column: auto !important; }
+            /* Ultra-wide screens - constrain form width */
+            @media (min-width: 2560px) {
+              #contact .card {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 28px !important;
+              }
+              #contact .grid {
+                gap: 20px !important;
+              }
             }
-            @media (max-width: 768px) {
+
+            /* Large Desktop */
+            @media (min-width: 1920px) and (max-width: 2559px) {
+              #contact .card {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 24px !important;
+              }
+              #contact .grid {
+                gap: 18px !important;
+              }
+            }
+
+            /* Desktop */
+            @media (min-width: 1440px) and (max-width: 1919px) {
+              #contact .card {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 22px !important;
+              }
+              #contact .grid {
+                gap: 16px !important;
+              }
+            }
+
+            @media (min-width: 1024px) and (max-width: 1439px) {
+              #contact .card {
+                padding: 20px !important;
+              }
+              #contact .grid {
+                gap: 15px !important;
+              }
+            }
+
+            /* Tablet */
+            @media (min-width: 768px) and (max-width: 1023px) {
+              #contact .card {
+                padding: 18px !important;
+              }
+              #contact .grid {
+                gap: 14px !important;
+              }
+            }
+
+            /* Mobile - single column */
+            @media (max-width: 767px) {
+              #contact .grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 12px !important;
+              }
+              #contact .grid > div { 
+                grid-column: auto !important; 
+              }
               #contact .card {
                 padding: 16px !important;
                 margin-bottom: 0 !important;
-              }
-              #contact .grid {
-                gap: 12px !important;
               }
               #contact form > div[style*="marginTop: 16"] {
                 margin-top: 14px !important;
@@ -154,7 +210,8 @@ export default function ContactSection() {
                 min-height: 20px !important;
               }
             }
-            @media (max-width: 640px) {
+
+            @media (max-width: 480px) {
               #contact .card {
                 padding: 14px !important;
               }
@@ -162,6 +219,7 @@ export default function ContactSection() {
                 gap: 10px !important;
               }
             }
+
             select {
               -webkit-appearance: none;
               -moz-appearance: none;
@@ -206,7 +264,7 @@ function Field({
   const id = `field-${label.toLowerCase().replace(/\s+/g, '-')}`
   return (
     <div style={{ gridColumn: `span ${gridSpan}` }}>
-      <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 8 }}>
+      <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 'var(--content-gap-sm)' }}> {/* 8px */}
         {label}
       </label>
       {textarea ? (
@@ -239,7 +297,7 @@ const fieldStyle: CSSProperties = {
   border: '1px solid rgba(255,255,255,.12)',
   background: 'rgba(0,0,0,.22)',
   color: 'rgba(255,255,255,.92)',
-  padding: '12px 12px',
+  padding: 'var(--content-gap-md) var(--content-gap-md)', /* 12px */
   outline: 'none',
   fontFamily: 'inherit',
   fontSize: 14,
@@ -263,7 +321,7 @@ function SelectField({
   const id = `field-${label.toLowerCase().replace(/\s+/g, '-')}`
   return (
     <div style={{ gridColumn: `span ${gridSpan}`, position: 'relative' }}>
-      <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 8 }}>
+      <label htmlFor={id} style={{ display: 'block', fontWeight: 750, fontSize: 13, marginBottom: 'var(--content-gap-sm)' }}> {/* 8px */}
         {label}
       </label>
       <div style={{ position: 'relative' }}>
@@ -318,5 +376,6 @@ function SelectField({
     </div>
   )
 }
+
 
 

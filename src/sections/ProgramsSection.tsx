@@ -137,11 +137,11 @@ export default function ProgramsSection() {
       <Container>
         <div
           className="grid"
-          style={{
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: 16,
-            alignItems: 'stretch',
-          }}
+            style={{
+              gridTemplateColumns: 'repeat(12, 1fr)',
+              gap: 'var(--content-gap-md)', /* 12px */
+              alignItems: 'stretch',
+            }}
         >
           {PROGRAMS.map((p, idx) => {
             const isRecommended = p.isRecommended
@@ -169,13 +169,13 @@ export default function ProgramsSection() {
                   className={`card ${isRecommended ? 'card--recommended' : ''} ${isMonthly ? 'card--monthly' : ''}`}
                   style={{
                     height: '100%',
-                    padding: 18,
+                    padding: 'var(--content-gap-lg)', /* 16px */
                     borderRadius: 18,
                     background: 'rgba(255, 255, 255, 0.04)',
                     position: 'relative',
                     overflow: 'hidden',
                     display: 'grid',
-                    gap: 12,
+                    gap: 'var(--content-gap-md)', /* 12px */
                     gridTemplateRows: 'auto auto auto auto 1fr auto',
                     boxShadow: isRecommended
                       ? '0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,200,0,0.25)'
@@ -188,8 +188,8 @@ export default function ProgramsSection() {
                   }}
                 >
 
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--content-gap-md)' }}> {/* 12px */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}> {/* 4px */}
                       <h3 style={{ margin: 0, letterSpacing: '-0.01em', fontSize: isRecommended ? 22 : 20 }}>
                         {p.title}
                       </h3>
@@ -228,15 +228,15 @@ export default function ProgramsSection() {
                       : p.subtitle}
                   </p>
 
-                  <div style={{ marginTop: 12, padding: '14px 0', borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+                  <div style={{ marginTop: 'var(--content-gap-sm)', padding: 'var(--content-gap-md) 0', borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}> {/* 8px top, 12px padding */}
                     <div style={{ fontSize: isRecommended ? 24 : 20, fontWeight: 800, color: isRecommended ? 'var(--accent)' : 'rgba(255,255,255,0.92)', letterSpacing: '-0.02em' }}>
                       {p.pricing}
                     </div>
                   </div>
 
-                  <ul style={{ margin: '16px 0 0', paddingLeft: 18, color: isMonthly ? 'rgba(255,255,255,.70)' : 'rgba(255,255,255,.78)' }}>
+                  <ul style={{ margin: 'var(--content-gap-md) 0 0', paddingLeft: '1.125rem', color: isMonthly ? 'rgba(255,255,255,.70)' : 'rgba(255,255,255,.78)' }}> {/* 12px top, 18px left */}
                     {p.features.map((feature, featureIdx) => (
-                      <li key={featureIdx} style={{ margin: '8px 0', fontSize: 13, lineHeight: 1.5 }}>
+                      <li key={featureIdx} style={{ margin: 'var(--space-3) 0', fontSize: 13, lineHeight: 1.5 }}> {/* 12px */}
                         {isSixMonths ? renderWithSelectiveHighlight(feature, sixMonthsHighlightTerms) : renderBoldCaps(feature)}
                       </li>
                     ))}
@@ -244,9 +244,9 @@ export default function ProgramsSection() {
 
                   <div
                     style={{
-                      marginTop: 8,
+                      marginTop: 'var(--content-gap-sm)', /* 8px */
                       display: 'flex',
-                      gap: 10,
+                      gap: 'var(--content-gap-sm)', /* 8px */
                       flexWrap: 'wrap',
                       alignSelf: 'end',
                     }}
@@ -267,10 +267,62 @@ export default function ProgramsSection() {
 
         <style>
           {`
-            @media (max-width: 940px) {
-              #programs .grid > article { grid-column: span 12 !important; }
+            /* Ultra-wide screens - ensure cards don't get too wide */
+            @media (min-width: 2560px) {
+              #programs .grid > article {
+                max-width: 550px;
+                justify-self: center;
+              }
+              #programs .grid {
+                gap: 28px !important;
+              }
             }
-            @media (max-width: 768px) {
+
+            /* Large Desktop */
+            @media (min-width: 1920px) and (max-width: 2559px) {
+              #programs .grid {
+                gap: 24px !important;
+              }
+              #programs .grid > article {
+                max-width: 500px;
+                justify-self: center;
+              }
+            }
+
+            /* Desktop */
+            @media (min-width: 1440px) and (max-width: 1919px) {
+              #programs .grid {
+                gap: 20px !important;
+              }
+            }
+
+            @media (min-width: 1024px) and (max-width: 1439px) {
+              #programs .grid {
+                gap: 18px !important;
+              }
+            }
+
+            /* Tablet - 2 columns */
+            @media (min-width: 768px) and (max-width: 1023px) {
+              #programs .grid > article:nth-child(1),
+              #programs .grid > article:nth-child(2) { 
+                grid-column: span 6 !important; 
+              }
+              #programs .grid > article:nth-child(3) { 
+                grid-column: span 12 !important;
+                max-width: 500px;
+                justify-self: center;
+              }
+              #programs .grid {
+                gap: 16px !important;
+              }
+            }
+
+            /* Mobile */
+            @media (max-width: 767px) {
+              #programs .grid > article { 
+                grid-column: span 12 !important; 
+              }
               #programs .grid {
                 gap: 14px !important;
               }
@@ -278,8 +330,8 @@ export default function ProgramsSection() {
                 margin-bottom: 0 !important;
               }
             }
-            @media (max-width: 640px) {
-              #programs .grid > article { grid-column: span 12 !important; }
+
+            @media (max-width: 480px) {
               #programs .grid {
                 gap: 12px !important;
               }
