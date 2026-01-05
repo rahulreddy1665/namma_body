@@ -10,7 +10,8 @@ export default function AboutSection() {
       <SectionHeading
         eyebrow="About"
         title="Science-based coaching, engineered for results."
-        description="At NAMMA BODY, we help busy individuals transform their bodies through disciplined training and sustainable nutrition . our methods are grounded in nutrition and exercise science, using whole foods that are accessible, practical, and effective with client safety and longterm success as our highest priorities."
+        description="Meet Raj,
+A highly committed natural bodybuilding athlete with competitive success and professional expertise in fitness coaching ,Raj has guided individuals from around the world toward sustainable transformations, improved health, and elite performance through structured training and personalized nutrition."
       />
 
       <Container>
@@ -126,7 +127,7 @@ export default function AboutSection() {
           >
             <MiniCard title="Experience" value="7+ yrs" note="Strength & conditioning coaching" />
             <MiniCard title="Certifications" value="Diploma in nutrition and fitness" note="Form first, evidence led methods" />
-            <MiniCard title="Focus" value="Coached over 60+ clients around the world" note="Fat loss · Muscle · Performance" />
+            <MiniCard title="Focus" value="Coached over 100+ clients around the world" note="Fat loss · Muscle · Performance" />
           </motion.div>
         </div>
 

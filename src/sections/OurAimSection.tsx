@@ -29,9 +29,10 @@ export default function OurAimSection() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{
             maxWidth: '900px',
-            margin: '0 auto',
-            textAlign: 'left',
+            margin: '0',
             marginTop: 'var(--content-gap-md)', /* 12px */
+            textAlign: 'left',
+            alignSelf: 'flex-start'
           }}
         >
           <p 

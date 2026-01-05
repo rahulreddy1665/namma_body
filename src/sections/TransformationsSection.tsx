@@ -187,8 +187,8 @@ export default function TransformationsSection() {
                     }}
                     style={{
                       flex: `0 0 calc(${100 / cardsToShow}% - ${(24 * (cardsToShow - 1)) / cardsToShow}px)`,
-                      minWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '32%',
-                      maxWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '32%',
+                      minWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '35%',
+                      maxWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '35%',
                       position: 'relative',
                       zIndex: 10,
                     }}
@@ -586,20 +586,34 @@ export default function TransformationsSection() {
             }
           }
           
-          /* Ensure cards scale properly at all sizes */
-          #transformations .transformations-container > div {
-            min-width: clamp(280px, 30vw, 450px);
-          }
-          
-          @media (max-width: 1023px) {
+          /* Mobile - Ensure full width for single card */
+          @media (max-width: 767px) {
             #transformations .transformations-container > div {
-              min-width: clamp(250px, 45vw, 400px);
+              min-width: 100% !important;
+              max-width: 100% !important;
+              flex: 0 0 100% !important;
+            }
+            #transformations .transformations-wrapper {
+              padding: 0 12px !important;
+            }
+            #transformations .container {
+              padding: 0 var(--container-padding-xs) !important;
             }
           }
           
-          @media (max-width: 767px) {
+          /* Tablet - Ensure proper width for 2 cards */
+          @media (min-width: 768px) and (max-width: 1023px) {
             #transformations .transformations-container > div {
-              min-width: clamp(280px, 85vw, 450px);
+              min-width: 48% !important;
+              max-width: 48% !important;
+            }
+          }
+          
+          /* Desktop - 35% width for 3 cards */
+          @media (min-width: 1024px) {
+            #transformations .transformations-container > div {
+              min-width: 35% !important;
+              max-width: 35% !important;
             }
           }
           `}

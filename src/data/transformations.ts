@@ -13,32 +13,32 @@ export type Transformation = {
 
 export const TRANSFORMATIONS: Transformation[] = [
   {
-    name: 'Client A',
+    name: 'Raj',
     focus: 'Fat Loss + Conditioning',
-    duration: '12 weeks',
+    duration: '16 weeks',
     imageSrc: transformation1,
-    imageAlt: 'Before and after transformation for Client A',
+    imageAlt: 'Before and after transformation for Raj',
   },
   {
-    name: 'Client B',
+    name: 'Charan',
     focus: 'Strength + Muscle',
     duration: '16 weeks',
     imageSrc: transformation2,
-    imageAlt: 'Before and after transformation for Client B',
+    imageAlt: 'Before and after transformation for Charan',
   },
   {
-    name: 'Client C',
+    name: 'Indra Sena Reddy',
     focus: 'Body Recomp',
-    duration: '10 weeks',
+    duration: '12 weeks',
     imageSrc: transformation3,
-    imageAlt: 'Before and after transformation for Client C',
+    imageAlt: 'Before and after transformation for Indra Sena Reddy',
   },
   {
-    name: 'Client D',
+    name: 'Rupesh',
     focus: 'Transformation',
-    duration: '14 weeks',
+    duration: '16 weeks',
     imageSrc: transformation4,
-    imageAlt: 'Before and after transformation for Client D',
+    imageAlt: 'Before and after transformation for Rupesh',
   },
 ]
 
