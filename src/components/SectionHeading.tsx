@@ -15,7 +15,13 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
     <Container>
       <motion.div
         className="section-heading-wrapper"
-        style={{  marginBottom: 'var(--content-gap-sm)' }} /* 8px */
+        style={{  
+          marginBottom: 'var(--content-gap-sm)', /* 8px */
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start'
+        }}
         initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
@@ -50,7 +56,7 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
           @media (min-width: 2560px) {
             .section-heading-wrapper {
               max-width: 1400px;
-              margin: 0 auto 12px auto !important;
+              margin: 0 0 12px 0 !important;
             }
             .section-heading-pill {
               font-size: 16px !important;
@@ -62,7 +68,7 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
           @media (min-width: 1920px) and (max-width: 2559px) {
             .section-heading-wrapper {
               max-width: 1200px;
-              margin: 0 auto 10px auto !important;
+              margin: 0 0 10px 0 !important;
             }
             .section-heading-pill {
               font-size: 15px !important;
