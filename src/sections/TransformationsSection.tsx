@@ -89,12 +89,12 @@ export default function TransformationsSection() {
                 className="carousel-button carousel-button--prev"
                 style={{
                   position: 'absolute',
-                  left: '-60px',
+                  left: '-20px',
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 10,
-                  width: '60px',
-                  height: '60px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   border: 'none',
                   background: 'rgba(255,255,255,0.1)',
@@ -104,8 +104,11 @@ export default function TransformationsSection() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'all 0.3s ease',
-                  fontSize: '28px',
+                  fontSize: '32px',
                   fontWeight: 300,
+                  lineHeight: 1,
+                  padding: 0,
+                  textAlign: 'center',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
@@ -124,12 +127,12 @@ export default function TransformationsSection() {
                 className="carousel-button carousel-button--next"
                 style={{
                   position: 'absolute',
-                  right: '-60px',
+                  right: '-20px',
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 10,
-                  width: '60px',
-                  height: '60px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   border: 'none',
                   background: 'rgba(255,255,255,0.1)',
@@ -139,8 +142,11 @@ export default function TransformationsSection() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'all 0.3s ease',
-                  fontSize: '28px',
+                  fontSize: '32px',
                   fontWeight: 300,
+                  lineHeight: 1,
+                  padding: 0,
+                  textAlign: 'center',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
@@ -187,8 +193,8 @@ export default function TransformationsSection() {
                     }}
                     style={{
                       flex: `0 0 calc(${100 / cardsToShow}% - ${(24 * (cardsToShow - 1)) / cardsToShow}px)`,
-                      minWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '35%',
-                      maxWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '35%',
+                      minWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '30%',
+                      maxWidth: cardsToShow === 1 ? '100%' : cardsToShow === 2 ? '48%' : '30%',
                       position: 'relative',
                       zIndex: 10,
                     }}
@@ -229,6 +235,7 @@ export default function TransformationsSection() {
                           initial="initial"
                           whileInView="animate"
                           viewport={{ once: true, amount: 0.2 }}
+                          className="transformation-image-container"
                           style={{
                             position: 'absolute',
                             top: '40px',
@@ -474,6 +481,12 @@ export default function TransformationsSection() {
               width: 50px !important;
               height: 50px !important;
               font-size: 24px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
             }
             .carousel-button--prev {
               left: -45px !important;
@@ -502,6 +515,12 @@ export default function TransformationsSection() {
               width: 48px !important;
               height: 48px !important;
               font-size: 22px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
             }
             .carousel-button--prev {
               left: -38px !important;
@@ -529,6 +548,12 @@ export default function TransformationsSection() {
               width: 42px !important;
               height: 42px !important;
               font-size: 20px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
             }
             .carousel-button--prev {
               left: -32px !important;
@@ -553,6 +578,12 @@ export default function TransformationsSection() {
               width: 38px !important;
               height: 38px !important;
               font-size: 18px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
             }
             .carousel-button--prev {
               left: -28px !important;
@@ -577,6 +608,12 @@ export default function TransformationsSection() {
               width: 36px !important;
               height: 36px !important;
               font-size: 16px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
             }
             .carousel-button--prev {
               left: -25px !important;
@@ -609,11 +646,40 @@ export default function TransformationsSection() {
             }
           }
           
-          /* Desktop - 35% width for 3 cards */
+          /* Desktop - 30% width for 3 cards */
           @media (min-width: 1024px) {
             #transformations .transformations-container > div {
-              min-width: 35% !important;
-              max-width: 35% !important;
+              min-width: 30% !important;
+              max-width: 30% !important;
+            }
+            /* Reduce image container width by 20% on desktop */
+            #transformations .transformation-image-container {
+              width: calc(80% - 25.6px) !important;
+            }
+            /* Bring arrows closer together and reduce size */
+            .carousel-button {
+              width: 48px !important;
+              height: 48px !important;
+              font-size: 32px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              line-height: 1 !important;
+              padding: 0 !important;
+              text-align: center !important;
+            }
+            .carousel-button--prev {
+              left: -20px !important;
+            }
+            .carousel-button--next {
+              right: -20px !important;
+            }
+          }
+          
+          /* Mobile - Reduce image container width by 10% */
+          @media (max-width: 767px) {
+            #transformations .transformation-image-container {
+              width: calc(90% - 28.8px) !important;
             }
           }
           `}

@@ -32,8 +32,10 @@ export default function OurAimSection() {
             margin: '0',
             marginTop: 'var(--content-gap-md)', /* 12px */
             textAlign: 'left',
-            alignSelf: 'flex-start'
+            alignSelf: 'flex-start',
+            width: '100%'
           }}
+          className="our-aim-content"
         >
           <p 
             className="lead"
@@ -48,6 +50,21 @@ export default function OurAimSection() {
           </p>
         </motion.div>
       </Container>
+      <style>
+        {`
+          /* Desktop - Full width for Our Aim text */
+          @media (min-width: 1024px) {
+            #our-aim .our-aim-content {
+              max-width: 100% !important;
+              width: 100% !important;
+            }
+            #our-aim .our-aim-content .lead {
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+          }
+        `}
+      </style>
     </div>
   )
 }

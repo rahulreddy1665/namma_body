@@ -52,10 +52,21 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
       </motion.div>
       <style>
         {`
+          /* Desktop - Full width for wrapper and description */
+          @media (min-width: 1024px) {
+            .section-heading-wrapper {
+              max-width: 100% !important;
+              width: 100% !important;
+            }
+            .section-heading-wrapper .lead {
+              width: 100% !important;
+              max-width: 100% !important;
+            }
+          }
+
           /* Ultra-wide screens */
           @media (min-width: 2560px) {
             .section-heading-wrapper {
-              max-width: 1400px;
               margin: 0 0 12px 0 !important;
             }
             .section-heading-pill {
@@ -67,7 +78,6 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
           /* Large Desktop */
           @media (min-width: 1920px) and (max-width: 2559px) {
             .section-heading-wrapper {
-              max-width: 1200px;
               margin: 0 0 10px 0 !important;
             }
             .section-heading-pill {
@@ -78,7 +88,6 @@ export default function SectionHeading({ eyebrow, title, description }: Props) {
           /* Desktop */
           @media (min-width: 1440px) and (max-width: 1919px) {
             .section-heading-wrapper {
-              max-width: 1000px;
               margin-bottom: 8px !important;
             }
           }

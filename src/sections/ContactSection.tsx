@@ -35,6 +35,7 @@ export default function ContactSection() {
 
       <Container>
         <motion.div
+          id="contact"
           className="card"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -44,6 +45,8 @@ export default function ContactSection() {
             padding: 'var(--content-gap-lg)', /* 16px */
             borderRadius: 18,
             background: 'rgba(255, 255, 255, 0.04)',
+            width: '100%',
+            maxWidth: '100%'
           }}
         >
           <form
@@ -134,48 +137,51 @@ export default function ContactSection() {
 
         <style>
           {`
-            /* Ultra-wide screens - constrain form width */
+            /* Desktop - Full width for contact form */
+            @media (min-width: 1024px) {
+              #contact .card {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+              }
+            }
+
+            /* Ultra-wide screens */
             @media (min-width: 2560px) {
               #contact .card {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 28px !important;
+                padding: var(--content-gap-lg) !important; /* 16px */
               }
               #contact .grid {
-                gap: 20px !important;
+                gap: var(--content-gap-md) !important; /* 12px */
               }
             }
 
             /* Large Desktop */
             @media (min-width: 1920px) and (max-width: 2559px) {
               #contact .card {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 24px !important;
+                padding: var(--content-gap-lg) !important; /* 16px */
               }
               #contact .grid {
-                gap: 18px !important;
+                gap: var(--content-gap-md) !important; /* 12px */
               }
             }
 
             /* Desktop */
             @media (min-width: 1440px) and (max-width: 1919px) {
               #contact .card {
-                max-width: 1100px;
-                margin: 0 auto;
-                padding: 22px !important;
+                padding: var(--content-gap-lg) !important; /* 16px */
               }
               #contact .grid {
-                gap: 16px !important;
+                gap: var(--content-gap-md) !important; /* 12px */
               }
             }
 
             @media (min-width: 1024px) and (max-width: 1439px) {
               #contact .card {
-                padding: 20px !important;
+                padding: var(--content-gap-lg) !important; /* 16px */
               }
               #contact .grid {
-                gap: 15px !important;
+                gap: var(--content-gap-md) !important; /* 12px */
               }
             }
 
